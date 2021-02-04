@@ -27,6 +27,9 @@ public class Student extends BaseEntity {
 
     private String email;
 
+    /**fine = 벌금 의미함**/
+    private Long fine;
+
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
