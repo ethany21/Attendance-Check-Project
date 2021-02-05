@@ -17,7 +17,11 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "student")
-public class Student extends BaseEntity {
+public class Student {
+
+    @Id@Column(name = "student_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
 
@@ -33,7 +37,7 @@ public class Student extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
-    @OneToMany(mappedBy = "class")
+    @OneToMany(mappedBy = "student")
     private Set<Attendance> attendances = new HashSet<>();
 
 }

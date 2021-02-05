@@ -15,12 +15,16 @@ import java.util.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "class")
-public class Class extends BaseEntity{
+public class Class{
+
+    @Id@Column(name = "class_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private Date date;
 
     private String topic;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "aClass")
     private Set<Attendance> attendances = new HashSet<>();
 }
