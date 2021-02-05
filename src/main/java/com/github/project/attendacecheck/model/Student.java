@@ -33,7 +33,7 @@ public class Student extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
-    @ManyToMany
-    private Set<Class> classes = new HashSet<>();
+    @OneToMany(mappedBy = "class")
+    private Set<Attendance> attendances = new HashSet<>();
 
 }

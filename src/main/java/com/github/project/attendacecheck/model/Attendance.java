@@ -1,7 +1,20 @@
 package com.github.project.attendacecheck.model;
 
-public enum Attendance {
+import javax.persistence.*;
 
-    ATTENDANCE, LATE, ABSENCE
+@Entity
+@Table(name = "attendance")
+public class Attendance extends BaseEntity{
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "class_id")
+    private Class aClass;
+
+    @Enumerated(value = EnumType.STRING)
+    private AttendanceCheck check;
 
 }

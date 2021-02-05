@@ -21,10 +21,6 @@ public class Class extends BaseEntity{
 
     private String topic;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "student_class",
-            joinColumns =@JoinColumn(name = "class_id"),
-            inverseJoinColumns =@JoinColumn(name = "student_id")
-    )
-    private Set<Student> students = new HashSet<>();
+    @OneToMany(mappedBy = "student")
+    private Set<Attendance> attendances = new HashSet<>();
 }

@@ -39,9 +39,4 @@ public class StudentServiceImpl implements StudentService {
     public void deleteById(Long aLong) {
 
     }
-
-    public void addFee(Long payment){
-
-    }
-
 }
