@@ -17,7 +17,7 @@ import java.util.*;
 @Table(name = "class")
 public class Class{
 
-    @Id@Column(name = "class_id")
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
