@@ -40,4 +40,9 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private Set<Attendance> attendances = new HashSet<>();
 
+    public void attend(Attendance attendance){
+        attendance.setStudent(this);
+        this.attendances.add(attendance);
+    }
+
 }
