@@ -6,5 +6,23 @@
 </head>
 <body>
 
+<div id = "container">
+    <div id = "content">
+
+        <table>
+            <tr>
+                <th>Classes Date</th>
+            </tr>
+            <tr th:each="aClass : ${classes}">
+                <td th:text="${aClass.getDate()}">class</td>
+                <td>
+                    <a th:href="@{/class/aClassDetails(classId=${aClass.id})}" class="btn btn-info btm-sm">Show Details</a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
 </body>
 </html>

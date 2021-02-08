@@ -26,6 +26,10 @@ public class Class{
 
     private String topic;
 
+    private String description;
+
+    private String instructor;
+
     @OneToMany(mappedBy = "aClass")
     private Set<Attendance> attendances = new HashSet<>();
 

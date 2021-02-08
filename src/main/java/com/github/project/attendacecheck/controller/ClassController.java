@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.support.JstlUtils;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Set;
 
@@ -40,8 +40,13 @@ public class ClassController {
     }
 
     @GetMapping
-    @RequestMapping("/{id}")
-    public String showClassDetails(Model model){
+    @RequestMapping("/aClassDetails")
+    public String showClassDetails(@RequestParam("classId") long id, Model model){
+
+        Class aClass = classService.findById(id);
+
+        model.addAttribute("details", aClass);
+
         return "Class/showClassDetails";
     }
 }

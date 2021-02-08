@@ -5,6 +5,26 @@
     <title>Title</title>
 </head>
 <body>
+<div id = "container">
+    <div id = "content">
 
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Topic</th>
+                <th>Instructor</th>
+                <th>Description</th>
+
+            <tr>
+                <td th:text="${details.getDate()}">detail</td>
+                <td th:text="${details.getTopic()}">detail</td>
+                <td th:text="${details.getInstructor()}">detail</td>
+                <td th:text="${details.getDescription()}">detail</td>
+            <tr>
+            </tr>
+        </table>
+        <a th:href="@{/class}" class="btn btn-info btm-sm">Back to Classes</a>
+    </div>
+</div>
 </body>
 </html>
