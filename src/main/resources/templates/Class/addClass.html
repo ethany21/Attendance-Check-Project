@@ -2,9 +2,46 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Class</title>
 </head>
 <body>
+
+    <div id = "wrapper">
+        <div id = "header">
+            <h2>Add Class</h2>
+        </div>
+    </div>
+
+    <div id="container">
+
+        <form method="post" th:object="${aClass}" th:action="@{/class/addClass}">
+            <table>
+                <tbody>
+                    <input type="hidden" th:field="*{id}" />
+                    <tr>
+                        <td><label>Date: </label></td>
+                        <td><input type="date" name="date" th:field="*{date}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Topic: </label></td>
+                        <td><input type="text" name="topic" th:field="*{topic}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Instructor: </label></td>
+                        <td><input type="text" name="instructor" th:field="*{instructor}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Description: </label></td>
+                        <td><input type="text" name="description" th:field="*{description}" /></td>
+                    </tr>
+                    <tr>
+                        <td><label></label></td>
+                        <td><input type="submit" value="Save" class="save"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
 
 </body>
 </html>

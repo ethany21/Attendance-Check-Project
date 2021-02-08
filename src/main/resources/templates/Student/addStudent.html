@@ -2,9 +2,57 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Student</title>
 </head>
 <body>
+
+<div id = "wrapper">
+    <div id = "header">
+        <h2>Add Class</h2>
+    </div>
+</div>
+
+<div id="container">
+
+    <form method="post" th:object="${student}" th:action="@{/student/addStudent}">
+        <table>
+            <tbody>
+            <input type="hidden" th:field="*{id}" />
+            <tr>
+                <td><label>Name: </label></td>
+                <td><input type="text" name="name" th:field="*{name}" /></td>
+            </tr>
+            <tr>
+                <td><label>Major: </label></td>
+                <td><input type="text" name="major" th:field="*{major}" /></td>
+            </tr>
+            <tr>
+                <td><label>BirthDate: </label></td>
+                <td><input type="date" name="birthDate" th:field="*{birthDate}" /></td>
+            </tr>
+            <tr>
+                <td><label>Email: </label></td>
+                <td><input type="text" name="email" th:field="*{email}" /></td>
+            </tr>
+            <tr>
+                <td><label>Email: </label></td>
+                <td><select class="form-control" name="gender" th:field="*{gender}">
+                    <option th:each="genderValue : ${T(com.github.project.attendacecheck.model.Gender).values()}"
+                        th:value="${genderValue.name()}"
+                        th:text="${genderValue.name()}">
+                        val
+                    </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label></label></td>
+                <td><input type="submit" value="Save" class="save"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
 
 </body>
 </html>

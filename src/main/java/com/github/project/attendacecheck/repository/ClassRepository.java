@@ -10,5 +10,4 @@ public interface ClassRepository extends JpaRepository<Class, Long> {
     Class findByTopic(String topic);
 
     Class findByDate(Date date);
-
 }

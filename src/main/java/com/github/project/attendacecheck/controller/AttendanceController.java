@@ -7,7 +7,9 @@ import com.github.project.attendacecheck.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/attendances")
@@ -23,10 +25,10 @@ public class AttendanceController {
         this.classService = classService;
     }
 
-    @RequestMapping(value = "/class/{id}")
-    public String CheckAttendances(@PathVariable(name = "id") String id, Model model){
+    @PostMapping("checkAttendance")
+    public String CheckAttendances(@RequestParam("classId") long id, Model model){
 
-        model.addAttribute("aClass", classService.findById(new Long(id)));
+        model.addAttribute("aClass", classService.findById(id));
 
         model.addAttribute("students", studentService.findAll());
 
