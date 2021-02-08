@@ -12,10 +12,6 @@ import java.io.Serializable;
 @IdClass(AttendanceId.class)
 public class Attendance implements Serializable {
 
-    @Id@Column(name = "attendance_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")

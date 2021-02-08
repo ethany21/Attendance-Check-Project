@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,7 +26,7 @@ class ClassTest {
     void attend() {
 
         aClass.setId(1l);
-        aClass.setDate(new Date());
+        aClass.setDate(LocalDate.of(2021, 2, 3));
         aClass.setTopic("Engineering");
 
         attendance.setCheck(AttendanceCheck.LATE);

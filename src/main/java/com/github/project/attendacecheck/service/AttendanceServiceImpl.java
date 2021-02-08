@@ -12,13 +12,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class AttendamceServiceImpl implements AttendanceService{
+public class AttendanceServiceImpl implements AttendanceService{
 
     private final AttendanceRepository attendanceRepository;
     private final ClassRepository classRepository;
     private final StudentRepository studentRepository;
 
-    public AttendamceServiceImpl(AttendanceRepository attendanceRepository, ClassRepository classRepository, StudentRepository studentRepository) {
+    public AttendanceServiceImpl(AttendanceRepository attendanceRepository, ClassRepository classRepository, StudentRepository studentRepository) {
         this.attendanceRepository = attendanceRepository;
         this.classRepository = classRepository;
         this.studentRepository = studentRepository;
@@ -35,11 +35,11 @@ public class AttendamceServiceImpl implements AttendanceService{
     }
 
     @Override
-    public Set<Attendance> findByAClass(Class aClass) {
+    public Set<Attendance> findByaClass(Class aClass) {
 
         Set<Attendance> attendances = new HashSet<>();
 
-        attendanceRepository.findByAClass(aClass).forEach(attendances::add);
+        attendanceRepository.findByaClass(aClass).forEach(attendances::add);
         return attendances;
     }
 

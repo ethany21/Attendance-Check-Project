@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <input type="hidden" th:field="*{id}"/>
+            <p th:text="${aClass.getDate()}"></p>
+            <div th:each="student: ${students}" >
+                <p th:text = "${student.getName()}"></p>
+                <p th:data="${attendance.setStudent(student)}"></p>
+                <p th:data="${attendance.setaClass(aClass)}"></p>
+            </div>
+</body>
+</html>

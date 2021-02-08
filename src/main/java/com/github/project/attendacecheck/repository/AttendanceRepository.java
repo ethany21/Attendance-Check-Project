@@ -10,6 +10,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
     Set<Attendance> findByStudent(Student student);
 
-    Set<Attendance> findByAClass(Class aClass);
+    Set<Attendance> findByaClass(Class aClass);
 
 }
