@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,7 +28,7 @@ public class Student {
 
     private String major;
 
-    private Date birthDate;
+    private LocalDate birthDate;
 
     private String email;
 

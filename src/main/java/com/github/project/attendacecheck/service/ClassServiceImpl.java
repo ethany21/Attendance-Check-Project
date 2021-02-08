@@ -5,6 +5,8 @@ import com.github.project.attendacecheck.repository.ClassRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -18,36 +20,40 @@ public class ClassServiceImpl implements ClassService{
 
     @Override
     public Set<Class> findAll() {
-        return null;
+
+        Set<Class> classes = new HashSet<>();
+
+        classRepository.findAll().forEach(classes::add);
+        return classes;
     }
 
     @Override
     public Class findById(Long aLong) {
-        return null;
+        return classRepository.findById(aLong).orElse(null);
     }
 
     @Override
     public Class save(Class object) {
-        return null;
+        return classRepository.save(object);
     }
 
     @Override
     public void delete(Class object) {
-
+        classRepository.delete(object);
     }
 
     @Override
     public void deleteById(Long aLong) {
-
+        classRepository.deleteById(aLong);
     }
 
     @Override
     public Class findByTopic(String topic) {
-        return null;
+        return classRepository.findByTopic(topic);
     }
 
     @Override
     public Class findByDate(Date date) {
-        return null;
+        return classRepository.findByDate(date);
     }
 }

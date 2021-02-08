@@ -27,8 +27,12 @@ class ClassTest {
         aClass.setId(1l);
         aClass.setDate(new Date());
         aClass.setTopic("Engineering");
-        aClass.attend(attendance);
-        assertNotNull(attendance.getAClass());
-        assertEquals(1l, attendance.getAClass().getId());
+
+        attendance.setCheck(AttendanceCheck.LATE);
+
+        attendance.setaClass(aClass);
+
+        assertNotNull(aClass.getAttendances());
+        assertEquals(1,aClass.getAttendances().size());
     }
 }
