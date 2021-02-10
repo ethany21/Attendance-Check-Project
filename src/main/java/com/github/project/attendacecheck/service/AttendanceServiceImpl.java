@@ -9,6 +9,7 @@ import com.github.project.attendacecheck.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -17,6 +18,11 @@ public class AttendanceServiceImpl implements AttendanceService{
     private final AttendanceRepository attendanceRepository;
     private final ClassRepository classRepository;
     private final StudentRepository studentRepository;
+
+    @Override
+    public <S extends Attendance> List<S> saveAll(Iterable<S> iterable) {
+        return attendanceRepository.saveAll(iterable);
+    }
 
     public AttendanceServiceImpl(AttendanceRepository attendanceRepository, ClassRepository classRepository, StudentRepository studentRepository) {
         this.attendanceRepository = attendanceRepository;

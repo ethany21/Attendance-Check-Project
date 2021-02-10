@@ -5,12 +5,19 @@
     <title>Check Attendance</title>
 </head>
 <body>
-        <input type="hidden" th:field="*{id}"/>
-            <p th:text="${aClass.getDate()}"></p>
-            <div th:each="student: ${students}" >
-                <p th:text = "${student.getName()}"></p>
-                <p th:data="${attendance.setStudent(student)}"></p>
-                <p th:data="${attendance.setaClass(aClass)}"></p>
-            </div>
+    <form method="post" th:object="${attendances}" th:action="@{/attedances/saveAttendance}">
+        <p th:text="${aClass.getDate()}"></p>
+            <ul style="list-style-type: none">
+                <li>
+                    <div th:each="student, i: ${students}" >
+                        <td th:text = "${student.getName()}"></td>
+                        <td>
+                            <input th:field=""/>
+                        </td>
+                    </div>
+                <li>
+            </ul>
+            <div><input type="submit" value="Save" class="save"/> </div>
+    </form>
 </body>
 </html>

@@ -8,9 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Getter
@@ -41,11 +39,6 @@ public class Student {
     private Gender gender;
 
     @OneToMany(mappedBy = "student")
-    private Set<Attendance> attendances = new HashSet<>();
-
-    public void attend(Attendance attendance){
-        attendance.setStudent(this);
-        this.attendances.add(attendance);
-    }
+    private List<Attendance> attendances = new ArrayList<>();
 
 }

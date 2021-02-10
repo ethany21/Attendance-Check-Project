@@ -32,6 +32,6 @@ public class Class{
     private String instructor;
 
     @OneToMany(mappedBy = "aClass")
-    private Set<Attendance> attendances = new HashSet<>();
+    private List<Attendance> attendances = new ArrayList<>();
 
 }
