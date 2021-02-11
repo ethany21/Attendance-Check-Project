@@ -9,10 +9,10 @@
         <p th:text="${aClass.getDate()}"></p>
             <ul style="list-style-type: none">
                 <li>
-                    <div th:each="student, i: ${students}" >
+                    <div th:each="student: ${students}" >
                         <td th:text = "${student.getName()}"></td>
                         <td>
-                            <input th:field=""/>
+                            <input th:field="${student}" />
                         </td>
                     </div>
                 <li>
