@@ -4,10 +4,7 @@ import com.github.project.attendacecheck.model.Class;
 import com.github.project.attendacecheck.repository.ClassRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ClassServiceImpl implements ClassService{
@@ -19,9 +16,9 @@ public class ClassServiceImpl implements ClassService{
     }
 
     @Override
-    public Set<Class> findAll() {
+    public List<Class> findAll() {
 
-        Set<Class> classes = new HashSet<>();
+        List<Class> classes = new ArrayList<>();
 
         classRepository.findAll().forEach(classes::add);
         return classes;

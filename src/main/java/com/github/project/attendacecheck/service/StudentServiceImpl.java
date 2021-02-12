@@ -4,7 +4,9 @@ import com.github.project.attendacecheck.model.Student;
 import com.github.project.attendacecheck.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -17,12 +19,18 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Set<Student> findAll() {
-        Set<Student> students = new HashSet<>();
+    public List<Student> findAll() {
+        List<Student> students = new ArrayList<>();
 
         studentRepository.findAll().forEach(students::add);
 
         return students;
+    }
+
+
+    @Override
+    public <S extends Student> List<S> saveAll(Iterable<S> iterable) {
+        return studentRepository.saveAll(iterable);
     }
 
     @Override

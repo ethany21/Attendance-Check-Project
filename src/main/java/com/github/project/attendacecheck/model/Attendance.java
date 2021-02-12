@@ -1,6 +1,7 @@
 package com.github.project.attendacecheck.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 @Getter
 @Table(name = "attendance")
 @IdClass(AttendanceId.class)
+@NoArgsConstructor
 public class Attendance implements Serializable {
 
     @Id

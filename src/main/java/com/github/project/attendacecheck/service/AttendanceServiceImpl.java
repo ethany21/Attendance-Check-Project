@@ -8,10 +8,8 @@ import com.github.project.attendacecheck.repository.ClassRepository;
 import com.github.project.attendacecheck.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
 @Service
 public class AttendanceServiceImpl implements AttendanceService{
 
@@ -31,9 +29,9 @@ public class AttendanceServiceImpl implements AttendanceService{
     }
 
     @Override
-    public Set<Attendance> findByStudent(Student student) {
+    public List<Attendance> findByStudent(Student student) {
 
-        Set<Attendance> attendances = new HashSet<>();
+        List<Attendance> attendances = new ArrayList<>();
 
         attendanceRepository.findByStudent(student).forEach(attendances::add);
 
@@ -41,17 +39,17 @@ public class AttendanceServiceImpl implements AttendanceService{
     }
 
     @Override
-    public Set<Attendance> findByaClass(Class aClass) {
+    public List<Attendance> findByaClass(Class aClass) {
 
-        Set<Attendance> attendances = new HashSet<>();
+        List<Attendance> attendances = new ArrayList<>();
 
         attendanceRepository.findByaClass(aClass).forEach(attendances::add);
         return attendances;
     }
 
     @Override
-    public Set<Attendance> findAll() {
-        Set<Attendance> attendances = new HashSet<>();
+    public List<Attendance> findAll() {
+        List<Attendance> attendances = new ArrayList<>();
 
         attendanceRepository.findAll().forEach(attendances::add);
         return attendances;

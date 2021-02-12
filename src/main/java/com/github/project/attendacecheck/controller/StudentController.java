@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -22,7 +23,7 @@ public class StudentController {
     @GetMapping({"", "/"})
     public String showStudents(Model model){
 
-        Set<Student> students = studentService.findAll();
+        List<Student> students = studentService.findAll();
 
         model.addAttribute("students", students);
 

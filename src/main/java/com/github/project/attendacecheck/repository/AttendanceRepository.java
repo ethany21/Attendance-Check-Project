@@ -10,9 +10,9 @@ import java.util.Set;
 
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
-    Set<Attendance> findByStudent(Student student);
+    List<Attendance> findByStudent(Student student);
 
-    Set<Attendance> findByaClass(Class aClass);
+    List<Attendance> findByaClass(Class aClass);
 
     @Override
     <S extends Attendance> List<S> saveAll(Iterable<S> iterable);

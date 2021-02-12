@@ -41,4 +41,11 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private List<Attendance> attendances = new ArrayList<>();
 
+    public Attendance attendCheck(AttendanceCheck check, Class aClass){
+        Attendance attendance = new Attendance();
+        attendance.setaClass(aClass);
+        attendance.setStudent(this);
+        attendance.setCheck(check);
+        return attendance;
+    }
 }

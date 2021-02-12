@@ -9,9 +9,9 @@ import java.util.Set;
 
 public interface AttendanceService extends CrudService<Attendance, Long>{
 
-    Set<Attendance> findByStudent(Student student);
+    List<Attendance> findByStudent(Student student);
 
-    Set<Attendance> findByaClass(Class aClass);
+    List<Attendance> findByaClass(Class aClass);
 
     <S extends Attendance> List<S> saveAll(Iterable<S> iterable);
 

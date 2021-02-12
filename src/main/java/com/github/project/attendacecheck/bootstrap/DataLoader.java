@@ -54,6 +54,25 @@ public class DataLoader implements CommandLineRunner {
         classService.save(aClass2);
         logger.info("saving a Class 2");
 
+
+        Class aClass3 = new Class();
+        aClass3.setDate(LocalDate.of(2019, 9, 15));
+        aClass3.setTopic("Distributed Computing");
+        aClass3.setDescription("Load Balancing resources, manage mutiple node, calculate from many computers");
+        aClass3.setInstructor("jojoldu");
+
+        classService.save(aClass3);
+        logger.info("saving a Class 3");
+
+        Class aClass4 = new Class();
+        aClass4.setDate(LocalDate.of(2019, 9, 22));
+        aClass4.setTopic("Apache Kafka");
+        aClass4.setDescription("Message Queueing system with broker, Producer & Consumer");
+        aClass4.setInstructor("Donut");
+
+        classService.save(aClass4);
+        logger.info("saving a Class 4");
+
         Student student1 = new Student();
         student1.setEmail("imwoodam@hanmail.net");
         student1.setName("woodam chung");
@@ -107,5 +126,13 @@ public class DataLoader implements CommandLineRunner {
         attendanceService.save(attendance4);
         logger.info("saving an Attendance 4");
 
+        Student student3 = new Student();
+        student3.setGender(Gender.MALE);
+        student3.setMajor("Ghrapics");
+        student3.setEmail("jojoldu@gmail.com");
+        student3.setName("jojoldu");
+        student3.setBirthDate(LocalDate.of(1986, 3, 2));
+        studentService.save(student3);
+        attendanceService.save(student3.attendCheck(AttendanceCheck.ATTEND, aClass2));
     }
 }

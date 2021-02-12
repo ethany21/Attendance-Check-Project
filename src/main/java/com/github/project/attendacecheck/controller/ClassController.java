@@ -6,6 +6,7 @@ import com.github.project.attendacecheck.service.ClassService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -21,7 +22,7 @@ public class ClassController {
     @GetMapping({"/", ""})
     public String showClasses(Model model){
 
-        Set<Class> classes = classService.findAll();
+        List<Class> classes = classService.findAll();
 
         model.addAttribute("classes", classes);
 

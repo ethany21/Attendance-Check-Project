@@ -1,10 +1,14 @@
 package com.github.project.attendacecheck.controller;
 
+import com.github.project.attendacecheck.bootstrap.DataLoader;
 import com.github.project.attendacecheck.model.Attendance;
 import com.github.project.attendacecheck.model.Class;
+import com.github.project.attendacecheck.model.Student;
 import com.github.project.attendacecheck.service.AttendanceService;
 import com.github.project.attendacecheck.service.ClassService;
 import com.github.project.attendacecheck.service.StudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +20,8 @@ import java.util.Set;
 @Controller
 @RequestMapping("/attendances")
 public class AttendanceController {
+
+    private static Logger logger = LoggerFactory.getLogger(AttendanceController.class);
 
     private final AttendanceService attendanceService;
     private final StudentService studentService;
@@ -32,7 +38,7 @@ public class AttendanceController {
     @GetMapping({"/", ""})
     public String showClasses(Model model){
 
-        Set<Class> classes = classService.findAll();
+        List<Class> classes = classService.findAll();
 
         model.addAttribute("classes", classes);
 
@@ -49,24 +55,31 @@ public class AttendanceController {
 
         model.addAttribute("students", studentService.findAll());
 
-        List<Attendance> attendances = new ArrayList<>();
-
-        Attendance attendance = new Attendance();
-
-        model.addAttribute("attendances", attendances);
-
-
-
         return "Attendance/checkAttendances";
     }
     /**
      save 누르면, checkAttendances view에서 옵션으로 선택한 출석 내역들이 일괄적으로 저장되고, 다시 수업 목록들로 되돌아간다
      **/
     @PostMapping("/saveAttendances")
-    public String saveAttendances(@ModelAttribute("attendances") List<Attendance> attendances){
+    public String saveAttendances(@ModelAttribute("students") List<Student> students){
 
-        attendanceService.saveAll(attendances);
+        logger.info("before saving students");
 
+        for(int i = 0; i < students.size(); i++){
+            Student student = students.get(i);
+            studentService.save(student);
+        }
+
+        logger.info("after saving students");
+
+        logger.info("before saving attendances");
+
+        for(int i = 0; i < students.size(); i++){
+            Attendance attendance = students.get(i).getAttendances().get(0);
+            attendanceService.save(attendance);
+        }
+
+        logger.info("after saving attendances");
         return "redirect:/attendances";
     }
 
