@@ -5,18 +5,20 @@
     <title>Check Attendance</title>
 </head>
 <body>
-    <form method="post" th:object="${students}" th:action="@{/attendances/saveAttendances}">
+    <form method="post" th:object="${attendanceList}" th:action="@{/attendances/saveAttendances}">
         <p th:text="${aClass.getDate()}"></p>
             <ul style="list-style-type: none">
                 <li>
-                    <div th:each="student: ${students}" >
-                        <td th:text = "${student.getName()}"></td>
+                    <div th:each="attendance, i : ${attendanceList.attendances}" >
+                        <td th:text = "${students.get(__${i.index}__).getName()}"></td>
                         <td>
                             <select class="form-control" name = "check" >
                                 <option th:each="checkValue : ${T(com.github.project.attendacecheck.model.AttendanceCheck).values()}"
                                         th:value="${checkValue.name()}"
                                         th:text="${checkValue.name()}">
-                                    <input th:field="${student.attendCheck(checkValue, aClass)}" />
+                                    <input th:field="${attendance.setaClass(aClass)}" />
+                                    <input th:field="${attendance.setStudent(students.get(__${i.index}__))}" />
+                                    <input th:field="${attendance.setCheck(checkValue)}" />
                                 </option>
                             </select>
                         </td>

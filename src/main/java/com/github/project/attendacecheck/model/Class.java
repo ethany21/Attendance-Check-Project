@@ -35,3 +35,5 @@ public class Class{
     private List<Attendance> attendances = new ArrayList<>();
 
 }
+
+

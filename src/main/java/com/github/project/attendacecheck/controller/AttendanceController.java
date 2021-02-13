@@ -1,9 +1,8 @@
 package com.github.project.attendacecheck.controller;
 
-import com.github.project.attendacecheck.bootstrap.DataLoader;
 import com.github.project.attendacecheck.model.Attendance;
+import com.github.project.attendacecheck.model.AttendanceWrapper;
 import com.github.project.attendacecheck.model.Class;
-import com.github.project.attendacecheck.model.Student;
 import com.github.project.attendacecheck.service.AttendanceService;
 import com.github.project.attendacecheck.service.ClassService;
 import com.github.project.attendacecheck.service.StudentService;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/attendances")
@@ -44,6 +42,7 @@ public class AttendanceController {
 
         return "Attendance/showClassList";
     }
+
     /**
      한 수업에 들어 갔다면, 위에서 아래로 존재하는 학생들 이름이 나오고, 그 옆으로 attendance의 enum list를 옵션으로 택할 수 있다
      attendace 인스턴스에, 출석 체크를 하는 일자의 수업 객체를 setaClass(aClass), 각각의 학생을 setStudent(student)로 저장한다
@@ -55,31 +54,32 @@ public class AttendanceController {
 
         model.addAttribute("students", studentService.findAll());
 
+        AttendanceWrapper attendances = new AttendanceWrapper();
+
+        attendances.generator(studentService.findAll().size());
+
+        model.addAttribute("attendanceList", attendances);
+
         return "Attendance/checkAttendances";
     }
     /**
      save 누르면, checkAttendances view에서 옵션으로 선택한 출석 내역들이 일괄적으로 저장되고, 다시 수업 목록들로 되돌아간다
      **/
     @PostMapping("/saveAttendances")
-    public String saveAttendances(@ModelAttribute("students") List<Student> students){
+    public String saveAttendances(@ModelAttribute("attendanceList") AttendanceWrapper attendanceWrapper){
 
-        logger.info("before saving students");
+        List<Attendance> attendances = attendanceWrapper.getAttendances();
 
-        for(int i = 0; i < students.size(); i++){
-            Student student = students.get(i);
-            studentService.save(student);
+        for(int i = 0; i < attendances.size(); i++){
+            attendanceService.save(attendances.get(i));
         }
 
-        logger.info("after saving students");
+        /**
+         System.out.println(attendanceWrapper.getAttendances().get(0).getCheck());
+         System.out.println(attendanceWrapper.getAttendances().get(1).getCheck());
+         System.out.println(attendanceWrapper.getAttendances().get(2).getCheck());
+         **/
 
-        logger.info("before saving attendances");
-
-        for(int i = 0; i < students.size(); i++){
-            Attendance attendance = students.get(i).getAttendances().get(0);
-            attendanceService.save(attendance);
-        }
-
-        logger.info("after saving attendances");
         return "redirect:/attendances";
     }
 
