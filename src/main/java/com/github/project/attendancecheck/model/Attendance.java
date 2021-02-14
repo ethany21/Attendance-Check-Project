@@ -43,4 +43,12 @@ public class Attendance implements Serializable {
         aClass.getAttendances().add(this);
     }
 
+    @Override
+    public String toString() {
+        return "Attendance{" +
+                "student=" + student +
+                ", aClass=" + aClass +
+                ", check='" + check + '\'' +
+                '}';
+    }
 }

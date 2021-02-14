@@ -12,14 +12,16 @@
                     <th:block th:each="attendance, i : ${attendanceList.attendances}" >
                         <div>
                         <td th:text = "${students.get(__${i.index}__).getName()}"></td>
+<!--                        <td th:text="*{attendances[__${i.index}__].AClass.date}">-->
                         <td>
 <!--                            <select class="form-control" name = "check" >-->
 <!--                                <option th:each="checkValue : ${T(com.github.project.attendancecheck.model.AttendanceCheck).values()}"-->
 <!--                                        th:value="${checkValue.name()}"-->
 <!--                                        th:text="${checkValue.name()}">-->
-                            <input type="hidden" th:field="*{attendances[__${i.index}__].AClass}" th:value="${aClass}" />
+<!--                            <input type="hidden" th:field="*{attendances[__${i.index}__].AClass.id}" th:value="${aClass.id}" />-->
 <!--                            <input type="hidden" th:field="*{attendances[__${i.index}__].student}" th:value="student"/>-->
                             <input type="text" th:field="*{attendances[__${i.index}__].check}" />
+                        </td>
 <!--                                </option>-->
 <!--                            </select>-->
                         </td>

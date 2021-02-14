@@ -20,6 +20,8 @@ public class AttendanceController {
 
     private static Logger logger = LoggerFactory.getLogger(AttendanceController.class);
 
+    private static Class presentClass;
+
     private final AttendanceService attendanceService;
     private final StudentService studentService;
     private final ClassService classService;
@@ -49,6 +51,8 @@ public class AttendanceController {
     @GetMapping("/checkAttendance")
     public String checkAttendances(@RequestParam("classId") long id, Model model){
 
+        presentClass = classService.findById(id);
+
         model.addAttribute("aClass", classService.findById(id));
 
         model.addAttribute("students", studentService.findAll());
@@ -56,10 +60,7 @@ public class AttendanceController {
         AttendanceWrapper attendanceWrapper = new AttendanceWrapper();
         for (int i = 0; i < studentService.findAll().size(); i++){
 
-            Attendance attendance = new Attendance();
-//            attendance.setAClass(classService.findById(id));
-//            System.out.println(attendance.getAClass().getDate());
-            attendanceWrapper.add(attendance);
+            attendanceWrapper.add(new Attendance());
         }
 
         model.addAttribute("attendanceList", attendanceWrapper);
@@ -79,7 +80,7 @@ public class AttendanceController {
         }
 
         for (int i = 0; i < attendances.size(); i++){
-            System.out.println(attendances.get(i).getAClass().getDate());
+            attendances.get(i).setAClass(presentClass);
         }
 
         for (int i = 0; i < attendances.size(); i++){

@@ -38,7 +38,7 @@ public class Student {
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "student")
     private List<Attendance> attendances = new ArrayList<>();
 //
 //    public Attendance attendCheck(AttendanceCheck check, Class aClass){
@@ -48,4 +48,18 @@ public class Student {
 //        attendance.setCheck(check);
 //        return attendance;
 //    }
+
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", major='" + major + '\'' +
+                ", birthDate=" + birthDate +
+                ", email='" + email + '\'' +
+                ", fine=" + fine +
+                ", gender=" + gender +
+                '}';
+    }
 }

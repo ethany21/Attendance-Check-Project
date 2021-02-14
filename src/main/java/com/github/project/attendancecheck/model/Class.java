@@ -31,9 +31,19 @@ public class Class{
 
     private String instructor;
 
-    @OneToMany(mappedBy = "aClass")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "aClass")
     private List<Attendance> attendances = new ArrayList<>();
 
+    @Override
+    public String   toString() {
+        return "Class{" +
+                "id=" + id +
+                ", date=" + date +
+                ", topic='" + topic + '\'' +
+                ", description='" + description + '\'' +
+                ", instructor='" + instructor + '\'' +
+                '}';
+    }
 }
 
 
