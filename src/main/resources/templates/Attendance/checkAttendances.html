@@ -9,23 +9,28 @@
         <p th:text="${aClass.getDate()}"></p>
             <ul style="list-style-type: none">
                 <li>
-                    <div th:each="attendance, i : ${attendanceList.attendances}" >
+                    <th:block th:each="attendance, i : ${attendanceList.attendances}" >
+                        <div>
                         <td th:text = "${students.get(__${i.index}__).getName()}"></td>
                         <td>
-                            <select class="form-control" name = "check" >
-                                <option th:each="checkValue : ${T(com.github.project.attendacecheck.model.AttendanceCheck).values()}"
-                                        th:value="${checkValue.name()}"
-                                        th:text="${checkValue.name()}">
-                                    <input th:field="${attendance.setaClass(aClass)}" />
-                                    <input th:field="${attendance.setStudent(students.get(__${i.index}__))}" />
-                                    <input th:field="${attendance.setCheck(checkValue)}" />
-                                </option>
-                            </select>
+<!--                            <select class="form-control" name = "check" >-->
+<!--                                <option th:each="checkValue : ${T(com.github.project.attendancecheck.model.AttendanceCheck).values()}"-->
+<!--                                        th:value="${checkValue.name()}"-->
+<!--                                        th:text="${checkValue.name()}">-->
+                            <input type="hidden" th:field="*{attendances[__${i.index}__].AClass}" th:value="${aClass}" />
+<!--                            <input type="hidden" th:field="*{attendances[__${i.index}__].student}" th:value="student"/>-->
+                            <input type="text" th:field="*{attendances[__${i.index}__].check}" />
+<!--                                </option>-->
+<!--                            </select>-->
                         </td>
-                    </div>
+                        </div>
+                    </th:block>
                 <li>
             </ul>
-            <div><input type="submit" value="Save" class="save"/> </div>
+            <tr>
+                <td><label></label></td>
+                <td><input type="submit" value="Save" class="save"/></td>
+            </tr>
     </form>
 </body>
 </html>

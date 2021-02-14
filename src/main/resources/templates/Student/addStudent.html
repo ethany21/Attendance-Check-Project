@@ -37,7 +37,7 @@
             <tr>
                 <td><label>Email: </label></td>
                 <td><select class="form-control" name="gender" th:field="*{gender}">
-                    <option th:each="genderValue : ${T(com.github.project.attendacecheck.model.Gender).values()}"
+                    <option th:each="genderValue : ${T(com.github.project.attendancecheck.model.Gender).values()}"
                         th:value="${genderValue.name()}"
                         th:text="${genderValue.name()}">
                         val
