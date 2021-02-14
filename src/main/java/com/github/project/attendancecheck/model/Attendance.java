@@ -24,7 +24,7 @@ public class Attendance implements Serializable {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "class_id")
-    private Class aClass;
+    private Class AClass;
 
 //    @Enumerated(value = EnumType.STRING)
 //    @Column(name = "check_attendance")
@@ -39,7 +39,7 @@ public class Attendance implements Serializable {
     }
 
     public void setAClass(Class aClass){
-        this.aClass = aClass;
+        this.AClass = aClass;
         aClass.getAttendances().add(this);
     }
 
@@ -47,7 +47,7 @@ public class Attendance implements Serializable {
     public String toString() {
         return "Attendance{" +
                 "student=" + student +
-                ", aClass=" + aClass +
+                ", aClass=" + AClass +
                 ", check='" + check + '\'' +
                 '}';
     }

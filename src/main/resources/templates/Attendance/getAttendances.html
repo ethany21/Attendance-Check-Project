@@ -6,5 +6,26 @@
 </head>
 <body>
 
+<div id = "container">
+    <div id = "content">
+
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <th>Attendance</th>
+            </tr>
+            <tr th:each="attendance, i: ${attendances}">
+                <ul style="list-style-type: none">
+                    <li>
+                        <td th:text="*{attendances[__${i.index}__].student.name}"></td>
+                        <td th:text="${attendances[__${i.index}__].check}" >Check</td>
+                    </li>
+                </ul>
+            </tr>
+        </table>
+        <a th:href="@{/attendances}" class="btn btn-info btm-sm">Back to Attendance Index Page</a>
+    </div>
+</div>
+
 </body>
 </html>

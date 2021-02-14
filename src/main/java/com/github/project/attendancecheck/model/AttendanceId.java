@@ -7,5 +7,5 @@ import java.io.Serializable;
 public class AttendanceId implements Serializable {
 
     private long student;
-    private long aClass;
+    private long AClass;
 }

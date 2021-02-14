@@ -31,7 +31,7 @@ public class Class{
 
     private String instructor;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "aClass")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "AClass")
     private List<Attendance> attendances = new ArrayList<>();
 
     @Override

@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
-    List<Attendance> findByStudent(Student student);
+    List<Attendance> findAllByStudent_Id(Long id);
 
-    List<Attendance> findByaClass(Class aClass);
+    List<Attendance> findAllByAClass_Id(Long id);
 
     @Override
     <S extends Attendance> List<S> saveAll(Iterable<S> iterable);

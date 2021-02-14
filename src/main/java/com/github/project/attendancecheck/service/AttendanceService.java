@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface AttendanceService extends CrudService<Attendance, Long>{
 
-    List<Attendance> findByStudent(Student student);
+    List<Attendance> findAllByStudent_Id(Long id);
 
-    List<Attendance> findByaClass(Class aClass);
+    List<Attendance> findAllByAClass_Id(Long id);
 
     <S extends Attendance> List<S> saveAll(Iterable<S> iterable);
 

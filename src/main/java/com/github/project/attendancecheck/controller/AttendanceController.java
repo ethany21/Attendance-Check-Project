@@ -77,16 +77,31 @@ public class AttendanceController {
 
         for (int i = 0; i < attendances.size(); i++){
             attendances.get(i).setStudent(studentService.findAll().get(i));
-        }
-
-        for (int i = 0; i < attendances.size(); i++){
             attendances.get(i).setAClass(presentClass);
-        }
-
-        for (int i = 0; i < attendances.size(); i++){
             attendanceService.save(attendances.get(i));
         }
         return "redirect:/attendances";
+    }
+
+    @GetMapping("/classList")
+    public String classList(Model model){
+
+        List<Class> classes = classService.findAll();
+
+        model.addAttribute("classes", classes);
+
+        return "Attendance/classList";
+    }
+
+
+    @GetMapping("/getAttendances")
+    public String getAttendances(@RequestParam("classId") long id, Model model){
+
+        List<Attendance> attendances = attendanceService.findAllByAClass_Id(id);
+
+        model.addAttribute("attendances", attendances);
+
+        return "Attendance/getAttendances";
     }
 
 }

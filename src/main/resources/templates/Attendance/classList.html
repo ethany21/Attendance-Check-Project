@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Class list for get Attendances</title>
+</head>
+<body>
+
+<div id = "container">
+    <div id = "content">
+
+        <table>
+            <tr>
+                <th>Classes Date</th>
+            </tr>
+            <tr th:each="aClass : ${classes}">
+                <td th:text="${aClass.getDate()}">class</td>
+                <td>
+                    <a th:href="@{/attendances/getAttendances(classId=${aClass.id})}" class="btn btn-info btm-sm">Show Attendances of Students</a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

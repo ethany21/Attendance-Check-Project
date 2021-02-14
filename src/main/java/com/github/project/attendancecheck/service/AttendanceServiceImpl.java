@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class AttendanceServiceImpl implements AttendanceService{
 
@@ -29,21 +30,21 @@ public class AttendanceServiceImpl implements AttendanceService{
     }
 
     @Override
-    public List<Attendance> findByStudent(Student student) {
+    public List<Attendance> findAllByStudent_Id(Long id) {
 
         List<Attendance> attendances = new ArrayList<>();
 
-        attendanceRepository.findByStudent(student).forEach(attendances::add);
+        attendanceRepository.findAllByStudent_Id(id).forEach(attendances::add);
 
         return attendances;
     }
 
     @Override
-    public List<Attendance> findByaClass(Class aClass) {
+    public List<Attendance> findAllByAClass_Id(Long id) {
 
         List<Attendance> attendances = new ArrayList<>();
 
-        attendanceRepository.findByaClass(aClass).forEach(attendances::add);
+        attendanceRepository.findAllByAClass_Id(id).forEach(attendances::add);
         return attendances;
     }
 
