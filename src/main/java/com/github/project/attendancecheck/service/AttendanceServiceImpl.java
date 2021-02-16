@@ -1,18 +1,17 @@
 package com.github.project.attendancecheck.service;
 
 import com.github.project.attendancecheck.model.Attendance;
-import com.github.project.attendancecheck.model.Class;
-import com.github.project.attendancecheck.model.Student;
 import com.github.project.attendancecheck.repository.AttendanceRepository;
 import com.github.project.attendancecheck.repository.ClassRepository;
 import com.github.project.attendancecheck.repository.StudentRepository;
+import com.github.project.attendancecheck.service.interfaces.AttendanceService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AttendanceServiceImpl implements AttendanceService{
+public class AttendanceServiceImpl implements AttendanceService {
 
     private final AttendanceRepository attendanceRepository;
     private final ClassRepository classRepository;

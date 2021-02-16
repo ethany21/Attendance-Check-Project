@@ -1,4 +1,4 @@
-package com.github.project.attendancecheck.service;
+package com.github.project.attendancecheck.service.interfaces;
 
 import java.util.List;
 

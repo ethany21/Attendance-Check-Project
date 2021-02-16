@@ -2,7 +2,7 @@ package com.github.project.attendancecheck.controller;
 
 import com.github.project.attendancecheck.model.Class;
 import org.springframework.stereotype.Controller;
-import com.github.project.attendancecheck.service.ClassService;
+import com.github.project.attendancecheck.service.interfaces.ClassService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 

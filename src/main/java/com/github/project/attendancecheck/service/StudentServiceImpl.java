@@ -2,6 +2,7 @@ package com.github.project.attendancecheck.service;
 
 import com.github.project.attendancecheck.model.Student;
 import com.github.project.attendancecheck.repository.StudentRepository;
+import com.github.project.attendancecheck.service.interfaces.StudentService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

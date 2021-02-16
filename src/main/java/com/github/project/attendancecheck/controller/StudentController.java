@@ -1,7 +1,7 @@
 package com.github.project.attendancecheck.controller;
 
 import com.github.project.attendancecheck.model.Student;
-import com.github.project.attendancecheck.service.StudentService;
+import com.github.project.attendancecheck.service.interfaces.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

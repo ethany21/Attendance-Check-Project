@@ -1,8 +1,6 @@
-package com.github.project.attendancecheck.service;
+package com.github.project.attendancecheck.service.interfaces;
 
 import com.github.project.attendancecheck.model.Attendance;
-import com.github.project.attendancecheck.model.Class;
-import com.github.project.attendancecheck.model.Student;
 
 import java.util.List;
 

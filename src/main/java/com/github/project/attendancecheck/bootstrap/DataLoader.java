@@ -2,9 +2,9 @@ package com.github.project.attendancecheck.bootstrap;
 
 import com.github.project.attendancecheck.model.*;
 import com.github.project.attendancecheck.model.Class;
-import com.github.project.attendancecheck.service.AttendanceService;
-import com.github.project.attendancecheck.service.ClassService;
-import com.github.project.attendancecheck.service.StudentService;
+import com.github.project.attendancecheck.service.interfaces.AttendanceService;
+import com.github.project.attendancecheck.service.interfaces.ClassService;
+import com.github.project.attendancecheck.service.interfaces.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
