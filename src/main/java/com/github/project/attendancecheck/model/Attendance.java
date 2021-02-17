@@ -26,12 +26,9 @@ public class Attendance implements Serializable {
     @JoinColumn(name = "class_id")
     private Class AClass;
 
-//    @Enumerated(value = EnumType.STRING)
-//    @Column(name = "check_attendance")
-//    private AttendanceCheck check;
-
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "check_attendance")
-    private String check;
+    private AttendanceCheck check;
 
     @OneToOne
     @JoinColumn(name = "panaltyFee_id")

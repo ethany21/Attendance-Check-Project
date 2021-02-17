@@ -96,7 +96,7 @@ public class DataLoader implements CommandLineRunner {
 
         Attendance attendance1 = new Attendance();
         attendance1.setStudent(student1);
-        attendance1.setCheck("Attend");
+        attendance1.setCheck(AttendanceCheck.ATTEND);
         attendance1.setAClass(aClass);
 
         attendanceService.save(attendance1);
@@ -104,7 +104,7 @@ public class DataLoader implements CommandLineRunner {
 
         Attendance attendance2 = new Attendance();
         attendance2.setStudent(student1);
-        attendance2.setCheck("Late");
+        attendance2.setCheck(AttendanceCheck.LATE);
         attendance2.setAClass(aClass2);
 
         attendanceService.save(attendance2);
@@ -112,7 +112,7 @@ public class DataLoader implements CommandLineRunner {
 
         Attendance attendance3 = new Attendance();
         attendance3.setStudent(student2);
-        attendance3.setCheck("Attend");
+        attendance3.setCheck(AttendanceCheck.ATTEND);
         attendance3.setAClass(aClass);
 
         attendanceService.save(attendance3);
@@ -120,7 +120,7 @@ public class DataLoader implements CommandLineRunner {
 
         Attendance attendance4 = new Attendance();
         attendance4.setStudent(student2);
-        attendance4.setCheck("ABSENCE");
+        attendance4.setCheck(AttendanceCheck.ABSENCE);
         attendance4.setAClass(aClass2);
 
         attendanceService.save(attendance4);
@@ -133,6 +133,5 @@ public class DataLoader implements CommandLineRunner {
         student3.setName("jojoldu");
         student3.setBirthDate(LocalDate.of(1986, 3, 2));
         studentService.save(student3);
-//        attendanceService.save(student3.attendCheck(AttendanceCheck.ATTEND, aClass2));
     }
 }
