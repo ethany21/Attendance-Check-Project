@@ -62,6 +62,19 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public Attendance save(Attendance object) {
+
+        switch (object.getCheck()){
+            case ATTEND:
+                object.setPenaltyFee(0);
+                break;
+            case LATE:
+                object.setPenaltyFee(3000);
+                break;
+            case ABSENCE:
+                object.setPenaltyFee(10000);
+                break;
+        }
+
         return attendanceRepository.save(object);
     }
 

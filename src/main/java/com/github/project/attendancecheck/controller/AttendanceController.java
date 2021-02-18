@@ -6,6 +6,7 @@ import com.github.project.attendancecheck.model.Class;
 import com.github.project.attendancecheck.service.interfaces.AttendanceService;
 import com.github.project.attendancecheck.service.interfaces.ClassService;
 import com.github.project.attendancecheck.service.interfaces.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/attendances")
+@RequiredArgsConstructor
 public class AttendanceController {
 
     private static Logger logger = LoggerFactory.getLogger(AttendanceController.class);
@@ -26,11 +28,6 @@ public class AttendanceController {
     private final StudentService studentService;
     private final ClassService classService;
 
-    public AttendanceController(AttendanceService attendanceService, StudentService studentService, ClassService classService) {
-        this.attendanceService = attendanceService;
-        this.studentService = studentService;
-        this.classService = classService;
-    }
     /**
      우선 수업 목록들을 펼친 다음에, 해당 수업을 선택해서 들어가면(href 태그 처리) 그 안에서 해당 수업의 출석 체크를 할 수 있다.
      **/

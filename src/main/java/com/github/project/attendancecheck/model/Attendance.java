@@ -30,9 +30,8 @@ public class Attendance implements Serializable {
     @Column(name = "check_attendance")
     private AttendanceCheck check;
 
-    @OneToOne
-    @JoinColumn(name = "panaltyFee_id")
-    private PenaltyFee penaltyFee;
+    @Column(name = "penaltyFee")
+    private int penaltyFee;
 
     public void setStudent(Student student){
         this.student = student;
