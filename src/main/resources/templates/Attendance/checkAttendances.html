@@ -19,10 +19,14 @@
                                         th:value="${checkValue.name()}"
                                         th:text="${checkValue.name()}">
                                     val
-<!--                            <input type="hidden" th:field="*{attendances[__${i.index}__].AClass.id}" th:value="${aClass.id}" />-->
-<!--                            <input type="hidden" th:field="*{attendances[__${i.index}__].student}" th:value="student"/>-->
                                 </option>
                             </select>
+                        </td>
+                        <td>
+<!--                            <input type="hidden" th:field="*{attendances[__${i.index}__].AClass}" th:value="${aClass}" />-->
+                        </td>
+                        <td>
+<!--                            <input type="hidden" th:field="*{attendances[__${i.index}__].student}" th:value="students.get(__${i.index}__)"/>-->
                         </td>
                         </div>
                     </th:block>
