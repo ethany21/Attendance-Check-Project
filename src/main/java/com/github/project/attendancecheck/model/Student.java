@@ -33,7 +33,8 @@ public class Student {
     private String email;
 
     /**fine = 벌금 의미함**/
-    private Long fine;
+    @OneToMany(mappedBy = "student")
+    private List<PaidFee> paidFees = new ArrayList<PaidFee>();
 
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
@@ -49,7 +50,6 @@ public class Student {
                 ", major='" + major + '\'' +
                 ", birthDate=" + birthDate +
                 ", email='" + email + '\'' +
-                ", fine=" + fine +
                 ", gender=" + gender +
                 '}';
     }
