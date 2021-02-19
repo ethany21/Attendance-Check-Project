@@ -24,4 +24,9 @@ public class PaidFee {
     @JoinColumn(name = "student_id")
     private Student student;
 
+    public void setStudent(Student student){
+        this.student = student;
+        student.getPaidFees().add(this);
+    }
+
 }

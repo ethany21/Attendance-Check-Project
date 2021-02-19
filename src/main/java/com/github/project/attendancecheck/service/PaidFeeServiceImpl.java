@@ -3,7 +3,6 @@ package com.github.project.attendancecheck.service;
 import com.github.project.attendancecheck.model.PaidFee;
 import com.github.project.attendancecheck.service.interfaces.PaidFeeService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

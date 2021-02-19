@@ -4,7 +4,6 @@ import com.github.project.attendancecheck.model.Class;
 import com.github.project.attendancecheck.repository.ClassRepository;
 import com.github.project.attendancecheck.service.interfaces.ClassService;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 @Service

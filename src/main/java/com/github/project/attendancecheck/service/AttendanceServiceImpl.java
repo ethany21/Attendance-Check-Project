@@ -2,12 +2,9 @@ package com.github.project.attendancecheck.service;
 
 import com.github.project.attendancecheck.model.Attendance;
 import com.github.project.attendancecheck.repository.AttendanceRepository;
-import com.github.project.attendancecheck.repository.ClassRepository;
-import com.github.project.attendancecheck.repository.StudentRepository;
 import com.github.project.attendancecheck.service.interfaces.AttendanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +13,15 @@ import java.util.List;
 public class AttendanceServiceImpl implements AttendanceService {
 
     private final AttendanceRepository attendanceRepository;
-    private final ClassRepository classRepository;
-    private final StudentRepository studentRepository;
 
     @Override
     public <S extends Attendance> List<S> saveAll(Iterable<S> iterable) {
         return attendanceRepository.saveAll(iterable);
+    }
+
+    @Override
+    public int sumPenaltyFee(Long id) {
+        return attendanceRepository.sumPenaltyFee(id);
     }
 
     @Override

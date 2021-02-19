@@ -127,7 +127,11 @@ public class AttendanceController {
 
         List<Attendance> attendances = attendanceService.findAllByStudent_Id(id);
 
+        int sumPenaltyFee = attendanceService.sumPenaltyFee(id);
+
         model.addAttribute("attendances", attendances);
+
+        model.addAttribute("sumPenaltyFee", sumPenaltyFee);
 
         return "Attendance/getStudentFee";
     }
