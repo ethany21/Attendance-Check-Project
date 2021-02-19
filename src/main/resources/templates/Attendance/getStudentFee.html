@@ -27,11 +27,21 @@
             <tr>
                 <td th:text="${sumPenaltyFee}"></td>
             </tr>
+            <tr>
+                <th>You paid :</th>
+            </tr>
+            <tr>
+                <td th:text="${paidFee}"></td>
+            </tr>
+            <tr>
+                <th>Your Rest Payment :</th>
+            </tr>
+            <tr>
+                <td th:text="${restPayment}"></td>
+            </tr>
         </table>
         <a th:href="@{/attendances}" class="btn btn-info btm-sm">Back To Attendance Index Page</a>
     </div>
 </div>
-
-
 </body>
 </html>
