@@ -13,14 +13,17 @@
                 <th>Class List</th>
             </tr>
             <tr th:each="aClass : ${classes}">
-                <ul style="list-style-type: none">
-                <li>
+                <td>
                     <a th:text="${aClass.getDate()}" th:href="@{/attendances/checkAttendance(classId=${aClass.id})}" class="btn btn-info btm-sm">Check</a>
-                </li>
-                </ul>
+                </td>
             </tr>
         </table>
-        <a th:href="@{/attendances/classList}" class="btn btn-info btm-sm">show Checked List of Classes</a>
+        <p>
+            <a th:href="@{/attendances/classList}" class="btn btn-info btm-sm">show Checked List of Classes</a>
+        </p>
+        <p>
+            <a th:href="@{/attendances/studentList}" class="btn btn-info btm-sm">show Checked List of Students</a>
+        </p>
     </div>
 </div>
 </body>

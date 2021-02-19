@@ -3,6 +3,7 @@ package com.github.project.attendancecheck.controller;
 import com.github.project.attendancecheck.model.Attendance;
 import com.github.project.attendancecheck.model.AttendanceWrapper;
 import com.github.project.attendancecheck.model.Class;
+import com.github.project.attendancecheck.model.Student;
 import com.github.project.attendancecheck.service.interfaces.AttendanceService;
 import com.github.project.attendancecheck.service.interfaces.ClassService;
 import com.github.project.attendancecheck.service.interfaces.StudentService;
@@ -99,6 +100,36 @@ public class AttendanceController {
         model.addAttribute("attendances", attendances);
 
         return "Attendance/getAttendances";
+    }
+
+    @GetMapping("/studentList")
+    public String studentList(Model model){
+
+        List<Student> students = studentService.findAll();
+
+        model.addAttribute("students", students);
+
+        return "Attendance/studentList";
+    }
+
+    @GetMapping("/getStudentAttendances")
+    public String getStudentAttendances(@RequestParam("studentId") long id, Model model){
+
+        List<Attendance> attendances = attendanceService.findAllByStudent_Id(id);
+
+        model.addAttribute("attendances", attendances);
+
+        return "Attendance/getStudentAttendances";
+    }
+
+    @GetMapping("/getStudentFee")
+    public String getStudentFee(@RequestParam("studentId") long id, Model model){
+
+        List<Attendance> attendances = attendanceService.findAllByStudent_Id(id);
+
+        model.addAttribute("attendances", attendances);
+
+        return "Attendance/getStudentFee";
     }
 
 }

@@ -16,7 +16,7 @@
             <tr th:each="aClass : ${classes}">
                 <td th:text="${aClass.getDate()}">class</td>
                 <td>
-                    <a th:href="@{/attendances/getAttendances(classId=${aClass.id})}" class="btn btn-info btm-sm">Show Attendances of Students</a>
+                    <a th:href="@{/attendances/getAttendances(classId=${aClass.id})}" class="btn btn-info btm-sm">Show Attendances of Class</a>
                 </td>
             </tr>
         </table>

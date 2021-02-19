@@ -5,12 +5,14 @@ import com.github.project.attendancecheck.repository.AttendanceRepository;
 import com.github.project.attendancecheck.repository.ClassRepository;
 import com.github.project.attendancecheck.repository.StudentRepository;
 import com.github.project.attendancecheck.service.interfaces.AttendanceService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AttendanceServiceImpl implements AttendanceService {
 
     private final AttendanceRepository attendanceRepository;
@@ -20,12 +22,6 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public <S extends Attendance> List<S> saveAll(Iterable<S> iterable) {
         return attendanceRepository.saveAll(iterable);
-    }
-
-    public AttendanceServiceImpl(AttendanceRepository attendanceRepository, ClassRepository classRepository, StudentRepository studentRepository) {
-        this.attendanceRepository = attendanceRepository;
-        this.classRepository = classRepository;
-        this.studentRepository = studentRepository;
     }
 
     @Override
