@@ -21,7 +21,7 @@ public class PaidFeeServiceImpl implements PaidFeeService {
      **/
     @Override
     public int showBudget() {
-        return paidFeeRepository.showBudget();
+        return paidFeeRepository.showBudget().orElse(0);
     }
 
     /**
@@ -29,7 +29,7 @@ public class PaidFeeServiceImpl implements PaidFeeService {
      **/
     @Override
     public int sumPaidFeeByStudent(Long id) {
-        return paidFeeRepository.sumPaidFeeByStudent(id);
+        return paidFeeRepository.sumPaidFeeByStudent(id).orElse(0);
     }
 
     @Override

@@ -5,12 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface PaidFeeRepository extends JpaRepository<PaidFee, Long> {
 
     @Query("SELECT sum(p.paidFee) from PaidFee as p")
-    int showBudget();
+    Optional<Integer> showBudget();
 
     @Query("SELECT sum(p.paidFee) from PaidFee as p where p.student.id = :studentId")
-    int sumPaidFeeByStudent(@Param("studentId") Long id);
+    Optional<Integer> sumPaidFeeByStudent(@Param("studentId") Long id);
 
 }

@@ -19,9 +19,9 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public int restPayment(Long id){
 
-        int sumPenaltyFee = attendanceRepository.sumPenaltyFee(id);
+        int sumPenaltyFee = attendanceRepository.sumPenaltyFee(id).orElse(0);
 
-        int paidFee = paidFeeRepository.sumPaidFeeByStudent(id);
+        int paidFee = paidFeeRepository.sumPaidFeeByStudent(id).orElse(0);
 
         int restPayment = sumPenaltyFee - paidFee;
 
@@ -35,7 +35,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public int sumPenaltyFee(Long id) {
-        return attendanceRepository.sumPenaltyFee(id);
+        return attendanceRepository.sumPenaltyFee(id).orElse(0);
     }
 
     @Override

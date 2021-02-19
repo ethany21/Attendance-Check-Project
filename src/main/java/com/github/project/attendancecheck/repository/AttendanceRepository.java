@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.util.List;
+import java.util.Optional;
 
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
@@ -13,7 +14,7 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     List<Attendance> findAllByAClass_Id(Long id);
 
     @Query("SELECT sum(a.penaltyFee) from Attendance as a where a.student.id = :id")
-    int sumPenaltyFee(@Param("id") Long id);
+    Optional<Integer> sumPenaltyFee(@Param("id") Long id);
 
     @Override
     <S extends Attendance> List<S> saveAll(Iterable<S> iterable);
