@@ -2,10 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Student List for Getting Attendances</title>
+    <title>Student List for Paying Fee</title>
 </head>
 <body>
-
     <div id = "container">
         <div id = "content">
 
@@ -16,15 +15,11 @@
                 <tr th:each="student : ${students}">
                     <td th:text="${student.getName()}">student</td>
                     <td>
-                        <a th:href="@{/attendances/getStudentAttendances(studentId=${student.id})}" class="btn btn-info btm-sm">Show Attendance of Student</a>
-                    </td>
-                    <td>
-                        <a th:href="@{/attendances/getStudentFee(studentId=${student.id})}" class="btn btn-info btm-sm">Show Penalty Fee of Student</a>
+                        <a th:href="@{/paidFee/payFee(studentId=${student.id})}" class="btn btn-info btm-sm">Click here for Payments</a>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
-
 </body>
 </html>

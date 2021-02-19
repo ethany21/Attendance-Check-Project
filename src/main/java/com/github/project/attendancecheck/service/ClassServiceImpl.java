@@ -3,17 +3,15 @@ package com.github.project.attendancecheck.service;
 import com.github.project.attendancecheck.model.Class;
 import com.github.project.attendancecheck.repository.ClassRepository;
 import com.github.project.attendancecheck.service.interfaces.ClassService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class ClassServiceImpl implements ClassService {
 
     private final ClassRepository classRepository;
-
-    public ClassServiceImpl(ClassRepository classRepository) {
-        this.classRepository = classRepository;
-    }
 
     @Override
     public List<Class> findAll() {

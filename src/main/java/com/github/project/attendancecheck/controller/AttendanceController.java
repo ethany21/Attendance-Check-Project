@@ -6,6 +6,7 @@ import com.github.project.attendancecheck.model.Class;
 import com.github.project.attendancecheck.model.Student;
 import com.github.project.attendancecheck.service.interfaces.AttendanceService;
 import com.github.project.attendancecheck.service.interfaces.ClassService;
+import com.github.project.attendancecheck.service.interfaces.PaidFeeService;
 import com.github.project.attendancecheck.service.interfaces.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,14 +20,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AttendanceController {
 
+
+    /**
+     해결책: Class, Student List, Attendance 를 저장할 수 있는 Service interface 를 만들고 구현 한다
+     그 Service 에서 만든 함수를 이 Controller 에서 사용 한다면 static 변수를 사용 하지 않아도 된다
+     **/
     private static Class presentClass;
 
+    private final PaidFeeService paidFeeService;
     private final AttendanceService attendanceService;
     private final StudentService studentService;
     private final ClassService classService;
 
     /**
-     우선 수업 목록들을 펼친 다음에, 해당 수업을 선택해서 들어가면(href 태그 처리) 그 안에서 해당 수업의 출석 체크를 할 수 있다.
+     우선 수업 목록 들을 펼친 다음에, 해당 수업을 선택 해서 들어 가면(href 태그 처리) 그 안에서 해당 수업의 출석 체크를 할 수 있다.
      **/
     @GetMapping({"/", ""})
     public String showClasses(Model model){
@@ -40,7 +47,7 @@ public class AttendanceController {
 
     /**
      한 수업에 들어 갔다면, 위에서 아래로 존재하는 학생들 이름이 나오고, 그 옆으로 attendance의 enum list를 옵션으로 택할 수 있다
-     attendace 인스턴스에, 출석 체크를 하는 일자의 수업 객체를 setaClass(aClass), 각각의 학생을 setStudent(student)로 저장한다
+     attendance 인스턴스에, 출석 체크를 하는 일자의 수업 객체를 setaClass(aClass), 각각의 학생을 setStudent(student)로 저장한다
      **/
     @GetMapping("/checkAttendance")
     public String checkAttendances(@RequestParam("classId") long id, Model model){
@@ -125,9 +132,17 @@ public class AttendanceController {
 
         int sumPenaltyFee = attendanceService.sumPenaltyFee(id);
 
+        int paidFee = paidFeeService.sumPaidFeeByStudent(id);
+
+        int restPayment = attendanceService.restPayment(id);
+
         model.addAttribute("attendances", attendances);
 
         model.addAttribute("sumPenaltyFee", sumPenaltyFee);
+
+        model.addAttribute("paidFee", paidFee);
+
+        model.addAttribute("restPayment", restPayment);
 
         return "Attendance/getStudentFee";
     }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form For Adding Payment of Fee</title>
+</head>
+<body>
+<div id = "wrapper">
+    <div id = "header">
+        <h2>Add Payment</h2>
+    </div>
+</div>
+
+<div id="container">
+
+    <form method="post" th:object="${paidFee}" th:action="@{/paidFee/saveFee}">
+        <table>
+            <tbody>
+            <input type="hidden" th:field="*{id}" />
+            <tr>
+                <td th:text="${student.name}" ></td>
+            </tr>
+            <tr>
+                <td><label>Payment Fee</label></td>
+                <td><input type="number" name="paidFee" th:field="*{paidFee}"/></td>
+                <td><input type="hidden" name="studentId" id="studentId" th:value="${student.id}"/></td>
+            </tr>
+            <tr>
+                <td><label></label></td>
+                <td><input type="submit" value="Save" class="save"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+</div>
+
+</body>
+</html>

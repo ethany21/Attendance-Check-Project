@@ -4,7 +4,9 @@ import com.github.project.attendancecheck.model.*;
 import com.github.project.attendancecheck.model.Class;
 import com.github.project.attendancecheck.service.interfaces.AttendanceService;
 import com.github.project.attendancecheck.service.interfaces.ClassService;
+import com.github.project.attendancecheck.service.interfaces.PaidFeeService;
 import com.github.project.attendancecheck.service.interfaces.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 
 @Component
+@RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
     private static Logger logger = LoggerFactory.getLogger(DataLoader.class);
@@ -21,13 +24,7 @@ public class DataLoader implements CommandLineRunner {
     private final StudentService studentService;
     private final ClassService classService;
     private final AttendanceService attendanceService;
-
-    @Autowired
-    public DataLoader(StudentService studentService, ClassService classService, AttendanceService attendanceService) {
-        this.studentService = studentService;
-        this.classService = classService;
-        this.attendanceService = attendanceService;
-    }
+    private final PaidFeeService paidFeeService;
 
     @Override
     @Transactional
@@ -137,7 +134,7 @@ public class DataLoader implements CommandLineRunner {
 
         Attendance attendance5 = new Attendance();
         attendance5.setStudent(student3);
-        attendance5.setCheck(AttendanceCheck.ATTEND);
+        attendance5.setCheck(AttendanceCheck.LATE);
         attendance5.setAClass(aClass);
 
         attendanceService.save(attendance5);
@@ -150,5 +147,28 @@ public class DataLoader implements CommandLineRunner {
 
         attendanceService.save(attendance6);
         logger.info("saving an Attendance 6");
+
+
+        /**
+         PaidFee paidFee1 = new PaidFee();
+         paidFee1.setStudent(student1);
+         paidFee1.setPaidFee(3000);
+         paidFeeService.save(paidFee1);
+
+         PaidFee paidFee2 = new PaidFee();
+         paidFee2.setStudent(student3);
+         paidFee2.setPaidFee(3000);
+         paidFeeService.save(paidFee2);
+
+         PaidFee paidFee3 = new PaidFee();
+         paidFee3.setStudent(student3);
+         paidFee3.setPaidFee(3000);
+         paidFeeService.save(paidFee3);
+
+         PaidFee paidFee4 = new PaidFee();
+         paidFee4.setStudent(student2);
+         paidFee4.setPaidFee(10000);
+         paidFeeService.save(paidFee4);
+         **/
     }
 }

@@ -15,4 +15,6 @@ public interface AttendanceService extends CrudService<Attendance, Long>{
 
     <S extends Attendance> List<S> saveAll(Iterable<S> iterable);
 
+    int restPayment(Long id);
+
 }
