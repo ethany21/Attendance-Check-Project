@@ -23,6 +23,12 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String username;
+
+    private String password;
+
+    private boolean enabled;
+
     private String name;
 
     private String major;
@@ -32,7 +38,13 @@ public class Student {
 
     private String email;
 
-    /**fine = 벌금 의미함**/
+    @ManyToMany
+    @JoinTable(name = "student_role",
+        joinColumns = @JoinColumn(name = "studend_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles = new ArrayList<>();
+
     @OneToMany(mappedBy = "student")
     private List<PaidFee> paidFees = new ArrayList<PaidFee>();
 
