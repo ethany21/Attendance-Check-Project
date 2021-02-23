@@ -2,14 +2,10 @@ package com.github.project.attendancecheck.bootstrap;
 
 import com.github.project.attendancecheck.model.*;
 import com.github.project.attendancecheck.model.Class;
-import com.github.project.attendancecheck.service.interfaces.AttendanceService;
-import com.github.project.attendancecheck.service.interfaces.ClassService;
-import com.github.project.attendancecheck.service.interfaces.PaidFeeService;
-import com.github.project.attendancecheck.service.interfaces.StudentService;
+import com.github.project.attendancecheck.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +21,7 @@ public class DataLoader implements CommandLineRunner {
     private final ClassService classService;
     private final AttendanceService attendanceService;
     private final PaidFeeService paidFeeService;
+    private final RoleService roleService;
 
     @Override
     @Transactional
@@ -148,6 +145,15 @@ public class DataLoader implements CommandLineRunner {
         attendanceService.save(attendance6);
         logger.info("saving an Attendance 6");
 
+        Role admin = new Role();
+        admin.setId(1l);
+        admin.setRole("ROLE_ADMIN");
+        roleService.save(admin);
+
+        Role user = new Role();
+        user.setId(2l);
+        user.setRole("ROLE_USER");
+        roleService.save(user);
 
         /**
          PaidFee paidFee1 = new PaidFee();

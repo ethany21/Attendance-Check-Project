@@ -1,20 +1,21 @@
 package com.github.project.attendancecheck.service;
 
+import com.github.project.attendancecheck.model.Role;
 import com.github.project.attendancecheck.model.Student;
 import com.github.project.attendancecheck.repository.StudentRepository;
 import com.github.project.attendancecheck.service.interfaces.StudentService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
-
-    public StudentServiceImpl(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<Student> findAll() {
@@ -39,6 +40,19 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student save(Student object) {
+
+        String encodedPassword = passwordEncoder.encode(object.getPassword());
+
+        object.setPassword(encodedPassword);
+
+        object.setEnabled(true);
+
+        Role role = new Role();
+
+        role.setId(2l);
+
+        object.getRoles().add(role);
+
         return studentRepository.save(object);
     }
 
