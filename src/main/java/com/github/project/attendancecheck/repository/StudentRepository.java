@@ -10,4 +10,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Override
     <S extends Student> List<S> saveAll(Iterable<S> iterable);
 
+    Student findByUsername(String username);
+
 }

@@ -4,18 +4,32 @@ import com.github.project.attendancecheck.model.Role;
 import com.github.project.attendancecheck.model.Student;
 import com.github.project.attendancecheck.repository.StudentRepository;
 import com.github.project.attendancecheck.service.interfaces.StudentService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
-    private final StudentRepository studentRepository;
-    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Student student =studentRepository.findByUsername(username);
+        if (student != null){
+            return student;
+        }
+        throw new UsernameNotFoundException("Student '" + username + "' not found");
+    }
 
     @Override
     public List<Student> findAll() {

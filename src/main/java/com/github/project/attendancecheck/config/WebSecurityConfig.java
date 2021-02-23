@@ -1,9 +1,10 @@
 package com.github.project.attendancecheck.config;
 
+import com.github.project.attendancecheck.service.interfaces.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,20 +12,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    DataSource dataSource;
+    private final StudentService studentService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/account/register", "/css/**").permitAll()
+                    .antMatchers("/", "/account/register", "/css/**", "/h2-console/*").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
@@ -33,22 +33,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .logout()
                     .permitAll();
+
+        /**
+         밑의 두 설정 들은, 개발 중에만 이용 하도록 한다
+         상단의 anyMatchers의 /h2-console/*과 더불어,
+         로컬이 아닌, 실제 운영 환경 으로 배포 시 반드시 주석 처리 할 것
+         **/
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder())
-                .usersByUsernameQuery("select username, password, enabled "
-                        + "from student "
-                        + "where username = ?")
-                .authoritiesByUsernameQuery("select username, role "
-                        + "from student_role sr inner join student s on sr.student_id = s.id "
-                        + "inner join role r on sr.role_id = r.id "
-                        + "where username = ?");
+        auth
+            .userDetailsService(studentService)
+            .passwordEncoder(passwordEncoder());
     }
-
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

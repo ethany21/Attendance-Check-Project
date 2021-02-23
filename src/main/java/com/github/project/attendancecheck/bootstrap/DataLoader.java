@@ -69,6 +69,9 @@ public class DataLoader implements CommandLineRunner {
 
         Student student1 = new Student();
         student1.setEmail("imwoodam@hanmail.net");
+        student1.setUsername("imwoodam");
+        student1.setPassword("35xxxv!!!");
+        student1.setEnabled(true);
         student1.setName("woodam chung");
         student1.setMajor("Psychology");
         student1.setGender(Gender.MALE);
@@ -79,6 +82,9 @@ public class DataLoader implements CommandLineRunner {
 
         Student student2 = new Student();
         student2.setEmail("bloned@gmail.com");
+        student2.setUsername("frankOcean");
+        student2.setPassword("channelOrange");
+        student2.setEnabled(true);
         student2.setName("Frank Ocean");
         student2.setMajor("Sociology");
         student2.setGender(Gender.MALE);
@@ -91,6 +97,9 @@ public class DataLoader implements CommandLineRunner {
         student3.setGender(Gender.MALE);
         student3.setMajor("Graphics");
         student3.setEmail("jojoldu@gmail.com");
+        student3.setUsername("jojoldu");
+        student3.setPassword("jojolju");
+        student3.setEnabled(true);
         student3.setName("Jojoldu");
         student3.setBirthDate(LocalDate.of(1986, 3, 2));
 

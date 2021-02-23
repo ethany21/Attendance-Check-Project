@@ -48,7 +48,7 @@ public class StudentController {
         return "redirect:/student";
     }
 
-    @GetMapping("studentDetails")
+    @GetMapping("/studentDetails")
     public String showStudentDetails(@RequestParam("studentId") long id, Model model){
 
         Student student = studentService.findById(id);
