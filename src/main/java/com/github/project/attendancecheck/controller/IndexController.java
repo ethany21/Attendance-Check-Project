@@ -12,7 +12,7 @@ public class IndexController {
 
     private final PaidFeeService paidFeeService;
 
-    @RequestMapping({"/", ""})
+    @RequestMapping({"/", "", "/index"})
     public String indexPage(){
 
         return "index";

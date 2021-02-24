@@ -4,9 +4,8 @@ import com.github.project.attendancecheck.model.Student;
 import com.github.project.attendancecheck.service.interfaces.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/account")
@@ -22,9 +21,11 @@ public class AccountController {
     }
 
     @GetMapping("/register")
-    public String register(){
+    public String register(Model model){
 
+        Student student = new Student();
 
+        model.addAttribute("student", student);
 
         return "Account/register";
     }
@@ -34,17 +35,30 @@ public class AccountController {
      **/
 
     @PostMapping("/register")
-    public String register(Student student){
+    public String register(@ModelAttribute("student") Student student, Model model){
 
         studentService.save(student);
+
+        model.addAttribute("student", student);
+
+        return "Account/registerCheck";
+
+    }
+
+    @GetMapping("/registerDetails")
+    public String registerDetails(@RequestParam("username") String username, Model model){
+
+        Student temp = new Student();
+
+        model.addAttribute("temp", temp);
 
         return "Account/registerDetails";
     }
 
-    @PostMapping("registerDetails")
-    public String registerDetails(Student student){
+    @PostMapping("/saveDetails")
+    public String registerDetails(@ModelAttribute("temp") Student student, @RequestParam("username") String username){
 
-
+        studentService.setStudent(username, student);
 
         return "redirect:/";
     }
