@@ -12,7 +12,7 @@
     <h2 th:text="${student.username}">
     </h2>
 
-    <a th:href="@{/account/registerDetails(username=${student.username})}">정보 등록</a>
+    <a th:href="@{/account/registerDetails(userId=${student.id})}">정보 등록</a>
 
 </body>
 </html>

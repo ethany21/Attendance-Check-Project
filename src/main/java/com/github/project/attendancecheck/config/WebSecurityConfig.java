@@ -39,8 +39,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          상단의 anyMatchers의 /h2-console/*과 더불어,
          로컬이 아닌, 실제 운영 환경 으로 배포 시 반드시 주석 처리 할 것
          **/
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+
+         http.csrf().disable();
+         http.headers().frameOptions().disable();
+
     }
 
     @Autowired

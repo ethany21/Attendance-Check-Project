@@ -17,5 +17,5 @@ public interface StudentService extends CrudService<Student, Long> , UserDetails
 
     Student findByUsername(String username);
 
-    void setStudent(String username, Student student);
+    Student update(Student student);
 }

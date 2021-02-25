@@ -3,6 +3,7 @@ package com.github.project.attendancecheck.controller;
 import com.github.project.attendancecheck.model.Student;
 import com.github.project.attendancecheck.service.interfaces.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.type.descriptor.java.SerializableTypeDescriptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,19 +47,19 @@ public class AccountController {
     }
 
     @GetMapping("/registerDetails")
-    public String registerDetails(@RequestParam("username") String username, Model model){
+    public String registerDetails(Model model, @RequestParam("userId") long id){
 
-        Student temp = new Student();
+        Student student = studentService.findById(id);
 
-        model.addAttribute("temp", temp);
+        model.addAttribute("temp", student);
 
         return "Account/registerDetails";
     }
 
     @PostMapping("/saveDetails")
-    public String registerDetails(@ModelAttribute("temp") Student student, @RequestParam("username") String username){
+    public String registerDetails(@ModelAttribute("temp") Student temp){
 
-        studentService.setStudent(username, student);
+        studentService.update(temp);
 
         return "redirect:/";
     }
