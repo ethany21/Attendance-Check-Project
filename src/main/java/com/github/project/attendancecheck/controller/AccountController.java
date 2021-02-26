@@ -4,14 +4,21 @@ import com.github.project.attendancecheck.model.Student;
 import com.github.project.attendancecheck.service.interfaces.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.type.descriptor.java.SerializableTypeDescriptor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/account")
 @RequiredArgsConstructor
 public class AccountController {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     private final StudentService studentService;
 
@@ -57,7 +64,19 @@ public class AccountController {
     }
 
     @PostMapping("/saveDetails")
-    public String registerDetails(@ModelAttribute("temp") Student temp){
+    public String registerDetails(@ModelAttribute("temp") Student temp, Principal principal){
+
+        /**
+         다음 code 들을, 서비스 layer 로 보낸다
+         **/
+
+        String username = principal.getName();
+
+        Student student = studentService.findByUsername(username);
+
+        temp.setPassword(passwordEncoder.encode(student.getPassword()));
+
+        temp.setEnabled(true);
 
         studentService.update(temp);
 
