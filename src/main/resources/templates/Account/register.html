@@ -18,7 +18,7 @@
         <input type="text" name="username" class="form-control" th:field="*{username}" placeholder="Username" required autofocus>
         <label class="sr-only">Password</label>
         <input type="password" name="password" class="form-control" th:field="*{password}" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">회원가입</button>
+        <button th:href="@{/account/registerDetails}" class="btn btn-lg btn-primary btn-block" onclick="submit()">회원가입</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
     </form>
 

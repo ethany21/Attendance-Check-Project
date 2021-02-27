@@ -49,34 +49,28 @@ public class AccountController {
 
         model.addAttribute("student", student);
 
-        return "Account/registerCheck";
+        return "Account/registerDetails";
 
     }
 
     @GetMapping("/registerDetails")
-    public String registerDetails(Model model, @RequestParam("userId") long id){
+    public String registerDetails(Model model, Principal principal){
 
-        Student student = studentService.findById(id);
+        String username = principal.getName();
+
+        Student student = studentService.findByUsername(username);
 
         model.addAttribute("temp", student);
 
         return "Account/registerDetails";
     }
 
-    @PostMapping("/saveDetails")
-    public String registerDetails(@ModelAttribute("temp") Student temp, Principal principal){
+    @PostMapping("/registerDetails")
+    public String registerDetails(@ModelAttribute("temp") Student temp){
 
         /**
          다음 code 들을, 서비스 layer 로 보낸다
          **/
-
-        String username = principal.getName();
-
-        Student student = studentService.findByUsername(username);
-
-        temp.setPassword(passwordEncoder.encode(student.getPassword()));
-
-        temp.setEnabled(true);
 
         studentService.update(temp);
 
