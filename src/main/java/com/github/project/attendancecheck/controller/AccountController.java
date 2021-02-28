@@ -43,37 +43,11 @@ public class AccountController {
      **/
 
     @PostMapping("/register")
-    public String register(@ModelAttribute("student") Student student, Model model){
+    public String register(@ModelAttribute("student") Student student){
 
         studentService.save(student);
 
-        model.addAttribute("student", student);
-
-        return "Account/registerDetails";
-
-    }
-
-    @GetMapping("/registerDetails")
-    public String registerDetails(Model model, Principal principal){
-
-        String username = principal.getName();
-
-        Student student = studentService.findByUsername(username);
-
-        model.addAttribute("temp", student);
-
-        return "Account/registerDetails";
-    }
-
-    @PostMapping("/registerDetails")
-    public String registerDetails(@ModelAttribute("temp") Student temp){
-
-        /**
-         다음 code 들을, 서비스 layer 로 보낸다
-         **/
-
-        studentService.update(temp);
-
         return "redirect:/";
+
     }
 }
