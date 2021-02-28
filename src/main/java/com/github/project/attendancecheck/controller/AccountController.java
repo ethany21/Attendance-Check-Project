@@ -47,7 +47,7 @@ public class AccountController {
 
         studentService.save(student);
 
-        return "redirect:/";
+        return "redirect:/account/login";
 
     }
 }

@@ -24,11 +24,6 @@ public class StudentServiceImpl implements StudentService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public Student update(Student student) {
-        return studentRepository.save(student);
-    }
-
-    @Override
     public Student findByUsername(String username) {
         return studentRepository.findByUsername(username);
     }
