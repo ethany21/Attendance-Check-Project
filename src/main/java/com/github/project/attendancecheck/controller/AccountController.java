@@ -3,9 +3,6 @@ package com.github.project.attendancecheck.controller;
 import com.github.project.attendancecheck.model.Student;
 import com.github.project.attendancecheck.service.interfaces.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.type.descriptor.java.SerializableTypeDescriptor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +13,6 @@ import java.security.Principal;
 @RequestMapping("/account")
 @RequiredArgsConstructor
 public class AccountController {
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     private final StudentService studentService;
 

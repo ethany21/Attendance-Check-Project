@@ -30,6 +30,17 @@ public class DataLoader implements CommandLineRunner {
     }
 
     public void dataLoad(){
+
+        Role admin = new Role();
+        admin.setId(1l);
+        admin.setRole("ROLE_ADMIN");
+        roleService.save(admin);
+
+        Role user = new Role();
+        user.setId(2l);
+        user.setRole("ROLE_USER");
+        roleService.save(user);
+
         Class aClass = new Class();
         aClass.setDate(LocalDate.of(2019, 9, 1));
         aClass.setTopic("Engineering");
@@ -77,7 +88,7 @@ public class DataLoader implements CommandLineRunner {
         student1.setGender(Gender.MALE);
         student1.setBirthDate(LocalDate.of(1995, 3, 9));
 
-        studentService.save(student1);
+        studentService.save(student1, true);
         logger.info("saving a Student 1");
 
         Student student2 = new Student();
@@ -153,16 +164,6 @@ public class DataLoader implements CommandLineRunner {
 
         attendanceService.save(attendance6);
         logger.info("saving an Attendance 6");
-
-        Role admin = new Role();
-        admin.setId(1l);
-        admin.setRole("ROLE_ADMIN");
-        roleService.save(admin);
-
-        Role user = new Role();
-        user.setId(2l);
-        user.setRole("ROLE_USER");
-        roleService.save(user);
 
         /**
          PaidFee paidFee1 = new PaidFee();

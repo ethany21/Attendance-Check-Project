@@ -77,6 +77,24 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(object);
     }
 
+    public Student save(Student object, boolean check) {
+
+        String encodedPassword = passwordEncoder.encode(object.getPassword());
+
+        object.setPassword(encodedPassword);
+
+        object.setEnabled(true);
+
+        Role role = new Role();
+
+        if (check) {
+            role.setId(1l);
+        }
+        object.getRoles().add(role);
+
+        return studentRepository.save(object);
+    }
+
     @Override
     public void delete(Student object) {
         studentRepository.delete(object);

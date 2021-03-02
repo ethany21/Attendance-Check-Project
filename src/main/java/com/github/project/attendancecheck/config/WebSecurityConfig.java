@@ -24,8 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                    .antMatchers("/budget", "/Class/showClassDetails", "/class/showClasses", "/h2-console").access("hasRole('ROLE_USER')")
+                    .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                     .antMatchers("/", "/account/register", "/css/**").permitAll()
-                    .anyRequest().authenticated()
                     .and()
                 .formLogin()
                     .loginPage("/account/login")
@@ -41,8 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          **/
 
 
-//         http.csrf().disable();
-//         http.headers().frameOptions().disable();
+         http.csrf().disable();
+         http.headers().frameOptions().disable();
 
 
     }
