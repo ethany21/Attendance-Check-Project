@@ -68,11 +68,7 @@ public class StudentServiceImpl implements StudentService {
 
         object.setEnabled(true);
 
-        Role role = new Role();
-
-        role.setId(2l);
-
-        object.getRoles().add(role);
+        object.setRole(Role.ROLE_USER);
 
         return studentRepository.save(object);
     }
@@ -85,12 +81,9 @@ public class StudentServiceImpl implements StudentService {
 
         object.setEnabled(true);
 
-        Role role = new Role();
-
-        if (check) {
-            role.setId(1l);
+        if(check){
+            object.setRole(Role.ROLE_ADMIN);
         }
-        object.getRoles().add(role);
 
         return studentRepository.save(object);
     }

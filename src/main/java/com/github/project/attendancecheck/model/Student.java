@@ -43,12 +43,8 @@ public class Student implements UserDetails {
 
     private String email;
 
-    @ManyToMany
-    @JoinTable(name = "student_role",
-        joinColumns = @JoinColumn(name = "studend_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private List<Role> roles = new ArrayList<>();
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 
     @OneToMany(mappedBy = "student")
     private List<PaidFee> paidFees = new ArrayList<PaidFee>();

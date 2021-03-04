@@ -21,7 +21,6 @@ public class DataLoader implements CommandLineRunner {
     private final ClassService classService;
     private final AttendanceService attendanceService;
     private final PaidFeeService paidFeeService;
-    private final RoleService roleService;
 
     @Override
     @Transactional
@@ -30,16 +29,6 @@ public class DataLoader implements CommandLineRunner {
     }
 
     public void dataLoad(){
-
-        Role admin = new Role();
-        admin.setId(1l);
-        admin.setRole("ROLE_ADMIN");
-        roleService.save(admin);
-
-        Role user = new Role();
-        user.setId(2l);
-        user.setRole("ROLE_USER");
-        roleService.save(user);
 
         Class aClass = new Class();
         aClass.setDate(LocalDate.of(2019, 9, 1));
