@@ -1,5 +1,6 @@
 package com.github.project.attendancecheck.config;
 
+import com.github.project.attendancecheck.model.Role;
 import com.github.project.attendancecheck.service.interfaces.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/budget", "/Class/showClassDetails", "/class/showClasses", "/h2-console").authenticated()
-                    .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+                    .antMatchers("/budget", "/class/showClassDetails", "/class/showClasses", "/h2-console").access("hasRole('ROLE_USER')")
+                    .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                     .antMatchers("/", "/account/register", "/css/**").permitAll()
                     .and()
                 .formLogin()

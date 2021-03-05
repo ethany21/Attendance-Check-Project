@@ -77,7 +77,7 @@ public class DataLoader implements CommandLineRunner {
         student1.setGender(Gender.MALE);
         student1.setBirthDate(LocalDate.of(1995, 3, 9));
 
-        studentService.save(student1, true);
+        studentService.save(student1);
         logger.info("saving a Student 1");
 
         Student student2 = new Student();
