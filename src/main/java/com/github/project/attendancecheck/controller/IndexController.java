@@ -60,4 +60,10 @@ public class IndexController {
         return page;
     }
 
+//    @GetMapping("/admin")
+//    public String adminPage(){
+//
+//        return "Admin/adminPage";
+//    }
+
 }
