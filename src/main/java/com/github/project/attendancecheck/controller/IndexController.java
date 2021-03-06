@@ -45,17 +45,19 @@ public class IndexController {
 
         logger.info(principal.getName());
 
-        String result = null;
+        String page = "";
 
         Student student = studentService.findByUsername(principal.getName());
 
         if(student.getRole().equals(Role.ROLE_ADMIN)) {
-            return "Admin/adminPage";
+
+            page =  "Admin/adminPage";
+        }
+        else if (student.getRole().equals(Role.ROLE_USER)){
+            page = "Admin/goBackToIndex";
         }
 
-        result =  "Admin/goBackToIndex";
-
-        return result;
+        return page;
     }
 
 }

@@ -70,8 +70,7 @@ public class DataLoader implements CommandLineRunner {
         Student admin = new Student();
         admin.setUsername("admin");
         admin.setPassword("admin111");
-        admin.setRole(Role.ROLE_ADMIN);
-        studentService.save(admin);
+        studentService.save(admin, true);
 
         Student student1 = new Student();
         student1.setEmail("imwoodam@hanmail.net");
