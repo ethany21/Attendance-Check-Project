@@ -40,30 +40,11 @@ public class IndexController {
         return "showBudget";
     }
 
+
     @GetMapping("/admin")
-    public String adminPage(Principal principal){
+    public String adminPage(){
 
-        logger.info(principal.getName());
-
-        String page = "";
-
-        Student student = studentService.findByUsername(principal.getName());
-
-        if(student.getRole().equals(Role.ROLE_ADMIN)) {
-
-            page =  "Admin/adminPage";
-        }
-        else if (student.getRole().equals(Role.ROLE_USER)){
-            page = "Admin/goBackToIndex";
-        }
-
-        return page;
+        return "Admin/adminPage";
     }
-
-//    @GetMapping("/admin")
-//    public String adminPage(){
-//
-//        return "Admin/adminPage";
-//    }
 
 }
