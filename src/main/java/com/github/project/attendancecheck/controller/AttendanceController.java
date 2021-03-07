@@ -4,10 +4,7 @@ import com.github.project.attendancecheck.model.Attendance;
 import com.github.project.attendancecheck.model.AttendanceWrapper;
 import com.github.project.attendancecheck.model.Class;
 import com.github.project.attendancecheck.model.Student;
-import com.github.project.attendancecheck.service.interfaces.AttendanceService;
-import com.github.project.attendancecheck.service.interfaces.ClassService;
-import com.github.project.attendancecheck.service.interfaces.PaidFeeService;
-import com.github.project.attendancecheck.service.interfaces.StudentService;
+import com.github.project.attendancecheck.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +22,6 @@ public class AttendanceController {
      해결책: Class, Student List, Attendance 를 저장할 수 있는 Service interface 를 만들고 구현 한다
      그 Service 에서 만든 함수를 이 Controller 에서 사용 한다면 static 변수를 사용 하지 않아도 된다
      **/
-    private static Class presentClass;
 
     private final PaidFeeService paidFeeService;
     private final AttendanceService attendanceService;
@@ -52,19 +48,11 @@ public class AttendanceController {
     @GetMapping("/checkAttendance")
     public String checkAttendances(@RequestParam("classId") long id, Model model){
 
-        presentClass = classService.findById(id);
-
         model.addAttribute("aClass", classService.findById(id));
 
         model.addAttribute("students", studentService.findAll());
 
-        AttendanceWrapper attendanceWrapper = new AttendanceWrapper();
-        for (int i = 0; i < studentService.findAll().size(); i++){
-
-            attendanceWrapper.add(new Attendance());
-        }
-
-        model.addAttribute("attendanceList", attendanceWrapper);
+        model.addAttribute("attendanceList", attendanceService.createAttendances(new AttendanceWrapper()));
 
         return "Attendance/checkAttendances";
     }
@@ -72,15 +60,10 @@ public class AttendanceController {
      save 누르면, checkAttendances view에서 옵션으로 선택한 출석 내역들이 일괄적으로 저장되고, 다시 수업 목록들로 되돌아간다
      **/
     @PostMapping("/saveAttendances")
-    public String saveAttendances(@ModelAttribute("attendanceList") AttendanceWrapper attendanceWrapper){
+    public String saveAttendances(@ModelAttribute("attendanceList") AttendanceWrapper attendanceWrapper, @RequestParam Long classId){
 
-        List<Attendance> attendances = attendanceWrapper.getAttendances();
+        attendanceService.setAttendancesDate(attendanceWrapper, classId);
 
-        for (int i = 0; i < attendances.size(); i++){
-            attendances.get(i).setStudent(studentService.findAll().get(i));
-            attendances.get(i).setAClass(presentClass);
-            attendanceService.save(attendances.get(i));
-        }
         return "redirect:/attendances";
     }
 

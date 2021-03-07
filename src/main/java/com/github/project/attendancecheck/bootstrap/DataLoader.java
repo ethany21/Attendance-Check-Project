@@ -67,11 +67,6 @@ public class DataLoader implements CommandLineRunner {
         classService.save(aClass4);
         logger.info("saving a Class 4");
 
-        Student admin = new Student();
-        admin.setUsername("admin");
-        admin.setPassword("admin111");
-        studentService.save(admin, true);
-
         Student student1 = new Student();
         student1.setEmail("imwoodam@hanmail.net");
         student1.setUsername("imwoodam");
@@ -82,7 +77,7 @@ public class DataLoader implements CommandLineRunner {
         student1.setGender(Gender.MALE);
         student1.setBirthDate(LocalDate.of(1995, 3, 9));
 
-        studentService.save(student1);
+        studentService.save(student1, true);
         logger.info("saving a Student 1");
 
         Student student2 = new Student();
@@ -103,7 +98,7 @@ public class DataLoader implements CommandLineRunner {
         student3.setMajor("Graphics");
         student3.setEmail("jojoldu@gmail.com");
         student3.setUsername("jojoldu");
-        student3.setPassword("jojolju");
+        student3.setPassword("jojoldu");
         student3.setEnabled(true);
         student3.setName("Jojoldu");
         student3.setBirthDate(LocalDate.of(1986, 3, 2));

@@ -5,14 +5,22 @@
     <title>Check Attendance</title>
 </head>
 <body>
+
+<div id = "wrapper">
+    <div id = "header">
+        <h2>Check Attendances</h2>
+    </div>
+</div>
+
+<div id="container">
     <form method="post" th:object="${attendanceList}" th:action="@{/attendances/saveAttendances}">
         <p th:text="${aClass.getDate()}"></p>
+
             <ul style="list-style-type: none">
                 <li>
                     <th:block th:each="attendance, i : ${attendanceList.attendances}" >
                         <div>
                         <td th:text = "${students.get(__${i.index}__).getName()}"></td>
-<!--                        <td th:text="*{attendances[__${i.index}__].AClass.date}">-->
                         <td>
                             <select class="form-control" name = "check" th:field="*{attendances[__${i.index}__].check}">
                                 <option th:each="checkValue : ${T(com.github.project.attendancecheck.model.AttendanceCheck).values()}"
@@ -22,12 +30,7 @@
                                 </option>
                             </select>
                         </td>
-                        <td>
-<!--                            <input type="hidden" th:field="*{attendances[__${i.index}__].AClass}" th:value="${aClass}" />-->
-                        </td>
-                        <td>
-<!--                            <input type="hidden" th:field="*{attendances[__${i.index}__].student}" th:value="students.get(__${i.index}__)"/>-->
-                        </td>
+                        <td><input type="hidden" name="classId" id="classId" th:value="${aClass.id}"/></td>
                         </div>
                     </th:block>
                 <li>
@@ -37,5 +40,6 @@
                 <td><input type="submit" value="Save" class="save"/></td>
             </tr>
     </form>
+</div>
 </body>
 </html>

@@ -15,9 +15,9 @@
 
     <a th:href="@{/admin}" class="btn btn-info btm-sm" sec:authorize="hasRole('ROLE_ADMIN')">Admin Page</a>
 
-    <a th:href="@{/myPage}" class="btn btn-info btm-sm" sec:authorize="hasRole('ROLE_USER')">My Page</a>
+    <a th:href="@{/myPage}" class="btn btn-info btm-sm" sec:authorize="isAuthenticated()">My Page</a>
 
-    <a th:href="@{/budget}" class="btn btn-info btm-sm">show Budget</a>
+    <a th:href="@{/budget}" class="btn btn-info btm-sm" sec:authorize="isAuthenticated()">show Budget</a>
 
     <a class="btn btn-secondary my-2 mr-2 my-sm-0" th:href="@{/account/login}"
        sec:authorize="!isAuthenticated()">로그인</a>

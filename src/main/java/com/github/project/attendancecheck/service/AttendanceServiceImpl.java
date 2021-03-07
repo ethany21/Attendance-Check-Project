@@ -1,8 +1,12 @@
 package com.github.project.attendancecheck.service;
 
 import com.github.project.attendancecheck.model.Attendance;
+import com.github.project.attendancecheck.model.AttendanceWrapper;
+import com.github.project.attendancecheck.model.Class;
 import com.github.project.attendancecheck.repository.AttendanceRepository;
+import com.github.project.attendancecheck.repository.ClassRepository;
 import com.github.project.attendancecheck.repository.PaidFeeRepository;
+import com.github.project.attendancecheck.repository.StudentRepository;
 import com.github.project.attendancecheck.service.interfaces.AttendanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +19,30 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     private final AttendanceRepository attendanceRepository;
     private final PaidFeeRepository paidFeeRepository;
+    private final StudentRepository studentRepository;
+    private  final ClassRepository classRepository;
+
+    @Override
+    public AttendanceWrapper createAttendances(AttendanceWrapper attendanceWrapper) {
+        for (int i = 0; i < studentRepository.findAll().size(); i++){
+
+            attendanceWrapper.add(new Attendance());
+        }
+        return attendanceWrapper;
+    }
+
+    @Override
+    public void setAttendancesDate(AttendanceWrapper attendanceWrapper, long classId) {
+
+        List<Attendance> attendances = attendanceWrapper.getAttendances();
+
+        for(int i = 0; i < attendances.size(); i++){
+            attendances.get(i).setStudent(studentRepository.findAll().get(i));
+            attendances.get(i).setAClass(classRepository.findById(classId).orElse(null));
+            save(attendances.get(i));
+        }
+
+    }
 
     @Override
     public int restPayment(Long id){
