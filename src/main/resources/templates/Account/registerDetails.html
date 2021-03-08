@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Details</title>
+</head>
+<body>
+    <form th:object="${student}" th:action="@{/account/registerDetails}" method="post">
+        <h1>정보 등록</h1>
+        <table>
+            <tbody>
+            <tr>
+                <td>
+                    <input type="hidden" name="studentId" id="studentId" th:value="${student.id}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Name: </label></td>
+                <td><input type="text" name="name" th:field="*{name}"></td>
+            </tr>
+            <tr>
+                <td><label>Major: </label></td>
+                <td><input type="text" name="major" th:field="*{major}" /></td>
+            </tr>
+            <tr>
+                <td><label>BirthDate: </label></td>
+                <td><input type="date" name="birthDate" th:field="*{birthDate}" /></td>
+            </tr>
+            <tr>
+                <td><label>Email: </label></td>
+                <td><input type="text" name="email" th:field="*{email}" /></td>
+            </tr>
+            <tr>
+                <td><label>Gender: </label></td>
+                <td><select class="form-control" name="gender" th:field="*{gender}">
+                    <option th:each="genderValue : ${T(com.github.project.attendancecheck.model.Gender).values()}"
+                            th:value="${genderValue.name()}"
+                            th:text="${genderValue.name()}">
+                        val
+                    </option>
+                </select>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" >회원가입</button>
+    </form>
+</body>
+</html>

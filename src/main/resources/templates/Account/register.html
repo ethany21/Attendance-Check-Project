@@ -18,36 +18,37 @@
         <input type="text" name="username" class="form-control" th:field="*{username}" placeholder="Username" required autofocus>
         <label class="sr-only">Password</label>
         <input type="password" name="password" class="form-control" th:field="*{password}" placeholder="Password" required>
-        <table class="text-center">
-            <tbody>
-            <tr>
-                <td><label>Name: </label></td>
-                <td><input type="text" name="name" th:field="*{name}"></td>
-            <tr>
-                <td><label>Major: </label></td>
-                <td><input type="text" name="major" th:field="*{major}" /></td>
-            </tr>
-            <tr>
-                <td><label>BirthDate: </label></td>
-                <td><input type="date" name="birthDate" th:field="*{birthDate}" /></td>
-            </tr>
-            <tr>
-                <td><label>Email: </label></td>
-                <td><input type="text" name="email" th:field="*{email}" /></td>
-            </tr>
-            <tr>
-                <td><label>Gender: </label></td>
-                <td><select class="form-control" name="gender" th:field="*{gender}">
-                    <option th:each="genderValue : ${T(com.github.project.attendancecheck.model.Gender).values()}"
-                            th:value="${genderValue.name()}"
-                            th:text="${genderValue.name()}">
-                        val
-                    </option>
-                </select>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<!--        <table class="text-center">-->
+<!--            <tbody>-->
+<!--            <tr>-->
+<!--                <td><label>Name: </label></td>-->
+<!--                <td><input type="text" name="name" th:field="*{name}"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td><label>Major: </label></td>-->
+<!--                <td><input type="text" name="major" th:field="*{major}" /></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td><label>BirthDate: </label></td>-->
+<!--                <td><input type="date" name="birthDate" th:field="*{birthDate}" /></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td><label>Email: </label></td>-->
+<!--                <td><input type="text" name="email" th:field="*{email}" /></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td><label>Gender: </label></td>-->
+<!--                <td><select class="form-control" name="gender" th:field="*{gender}">-->
+<!--                    <option th:each="genderValue : ${T(com.github.project.attendancecheck.model.Gender).values()}"-->
+<!--                            th:value="${genderValue.name()}"-->
+<!--                            th:text="${genderValue.name()}">-->
+<!--                        val-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
         <button type="submit" class="btn btn-lg btn-primary btn-block" >회원가입</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
     </form>

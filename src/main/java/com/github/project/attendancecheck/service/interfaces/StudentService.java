@@ -19,4 +19,6 @@ public interface StudentService extends CrudService<Student, Long> , UserDetails
 
     Student save(Student object, boolean check);
 
+    Student update(Student object);
+
 }

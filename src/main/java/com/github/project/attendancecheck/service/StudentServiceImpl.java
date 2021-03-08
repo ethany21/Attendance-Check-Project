@@ -60,6 +60,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student update(Student object) {
+        return studentRepository.save(object);
+    }
+
+    @Override
     public Student save(Student object) {
 
         String encodedPassword = passwordEncoder.encode(object.getPassword());
