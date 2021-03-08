@@ -22,12 +22,14 @@ public class MyPageController {
     public String myPage(Model model, Principal principal){
 
 
-        return null;
+        return "MyPage/myPage";
     }
 
     @GetMapping("/myInfo")
     public String myInfo(){
+
         return null;
+
     }
 
     @GetMapping("/classList")
@@ -39,7 +41,9 @@ public class MyPageController {
 
     @GetMapping("/myFee")
     public String myFee(){
+
         return null;
+
     }
 
 }
