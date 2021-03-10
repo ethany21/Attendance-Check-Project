@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Fee</title>
+</head>
+<body>
+
+<div id="container">
+    <div id="content">
+        <table>
+            <tr>
+                <th>Class Date</th>
+                <th>Penalty Fee</th>
+            </tr>
+            <tr th:each="attendance, i: ${attendances}">
+                <ul style="list-style-type: none">
+                    <li>
+                        <td th:text="*{attendances[__${i.index}__].AClass.date}"></td>
+                        <td th:text="*{attendances[__${i.index}__].penaltyFee}"></td>
+                    </li>
+                </ul>
+            </tr>
+            <tr>
+                <th>Sum of Penalty Fee</th>
+            </tr>
+            <tr>
+                <td th:text="${sumPenaltyFee}"></td>
+            </tr>
+            <tr>
+                <th>You paid :</th>
+            </tr>
+            <tr>
+                <td th:text="${paidFee}"></td>
+            </tr>
+            <tr>
+                <th>Your Rest Payment :</th>
+            </tr>
+            <tr>
+                <td th:text="${restPayment}"></td>
+            </tr>
+        </table>
+        <a th:href="@{/myPage}" class="btn btn-info btm-sm">Back To My Page</a>
+    </div>
+</div>
+
+</body>
+</html>

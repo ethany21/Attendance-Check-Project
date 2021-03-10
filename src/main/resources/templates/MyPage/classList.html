@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>classList</title>
+</head>
+<body>
+
+<div id="container">
+    <div id="content">
+        <table>
+            <tr>
+                <th>Class Date</th>
+                <th>Attendance</th>
+            </tr>
+            <tr th:each="attendance, i: ${attendances}">
+                <ul style="list-style-type: none">
+                    <li>
+                        <td th:text="*{attendances[__${i.index}__].AClass.date}"></td>
+                        <td th:text="*{attendances[__${i.index}__].check}"></td>
+                    </li>
+                </ul>
+            </tr>
+        </table>
+        <a th:href="@{/myPage}" class="btn btn-info btm-sm">Back to My Page</a>
+    </div>
+</div>
+
+</body>
+</html>

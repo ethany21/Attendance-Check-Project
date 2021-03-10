@@ -6,5 +6,15 @@
 </head>
 <body>
 
+<h1 th:text="${'Welcome ' + student.name}"></h1>
+
+<a th:href="@{/myPage/myInfo}"><h2>개인 정보</h2></a>
+
+<a th:href="@{/myPage/classList}"><h2>수업 출결 현황</h2></a>
+
+<a th:href="@{/myPage/myFee}"><h2>벌금 지불 내역</h2></a>
+
+<a th:href="@{/}" class="btn btn-info btm-sm">Back to Index Page</a>
+
 </body>
 </html>
