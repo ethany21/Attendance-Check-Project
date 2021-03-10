@@ -91,6 +91,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>check-attendances</finalName>
 	</build>
 
 </project>
