@@ -2,7 +2,7 @@
 Project for Attendance Check with Spring Boot
 
 ## project url
-[url of check-attendances](Checkattendances-env.eba-e3nq8j5z.ap-northeast-2.elasticbeanstalk.com) 
+[url of check-attendances](http://checkattendances-env.eba-e3nq8j5z.ap-northeast-2.elasticbeanstalk.com/) 
 
 ## 1. project 제목: 출결관리 프로젝트
 
