@@ -2,7 +2,8 @@
 Project for Attendance Check with Spring Boot
 
 ## project url
-[url of check-attendances](http://checkattendances-env.eba-e3nq8j5z.ap-northeast-2.elasticbeanstalk.com/) 
+[url of check-attendances](http://checkattendances-env.eba-e3nq8j5z.ap-northeast-2.elasticbeanstalk.com/)
+AWS 계정 Billing 문제로 인스턴스를 삭제했습니다.
 
 ## 1. project 제목: 출결관리 프로젝트
 
