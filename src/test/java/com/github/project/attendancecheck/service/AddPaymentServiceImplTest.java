@@ -7,6 +7,7 @@ import com.github.project.attendancecheck.model.Gender;
 import com.github.project.attendancecheck.model.Student;
 import com.github.project.attendancecheck.repository.ClassRepository;
 import com.github.project.attendancecheck.repository.StudentRepository;
+import com.github.project.attendancecheck.service.interfaces.AddPaymentService;
 import com.github.project.attendancecheck.service.interfaces.AttendanceService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -35,6 +37,8 @@ class AddPaymentServiceImplTest {
     @Autowired
     private ClassRepository classRepository;
 
+    private AddPaymentServiceImpl mock = mock(AddPaymentServiceImpl.class);
+
     @Test
     public void addPaymentTest(){
         Student student = studentRepository.findByUsername("imwoodam");
@@ -50,11 +54,6 @@ class AddPaymentServiceImplTest {
         assertEquals(studentRepository.findAll().size(), attendances.size());
 
         logger.info("Size of attendances is " + attendances.size());
-
-    }
-
-    @Test
-    public void setAttendancesDateTest(){
 
     }
 
