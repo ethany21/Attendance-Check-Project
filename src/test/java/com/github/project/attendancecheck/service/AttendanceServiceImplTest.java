@@ -14,9 +14,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -24,6 +26,9 @@ import static org.mockito.Mockito.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class AttendanceServiceImplTest {
+
+    @Autowired
+    private StudentRepository students;
 
     @Mock
     private AttendanceRepository attendanceRepository;
@@ -44,6 +49,7 @@ class AttendanceServiceImplTest {
     public void setUp(){
 
         attendanceService = new AttendanceServiceImpl(attendanceRepository, paidFeeRepository, studentRepository, classRepository);
+
     }
 
     @AfterEach
@@ -54,8 +60,7 @@ class AttendanceServiceImplTest {
     @Test
     void createAttendancesTest() {
 
-        attendanceService.createAttendances(new AttendanceWrapper());
-
+        attendanceService.createAttendances(new AttendanceWrapper(), 3l);
         verify(studentRepository).findAll();
 
     }

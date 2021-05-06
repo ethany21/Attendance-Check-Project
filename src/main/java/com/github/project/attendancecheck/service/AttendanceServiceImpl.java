@@ -20,13 +20,16 @@ public class AttendanceServiceImpl implements AttendanceService {
     private final AttendanceRepository attendanceRepository;
     private final PaidFeeRepository paidFeeRepository;
     private final StudentRepository studentRepository;
-    private  final ClassRepository classRepository;
+    private final ClassRepository classRepository;
 
     @Override
-    public AttendanceWrapper createAttendances(AttendanceWrapper attendanceWrapper) {
+    public AttendanceWrapper createAttendances(AttendanceWrapper attendanceWrapper, long classId) {
         for (int i = 0; i < studentRepository.findAll().size(); i++){
 
-            attendanceWrapper.add(new Attendance());
+            Attendance attendance = new Attendance();
+            attendance.setStudent(studentRepository.findById(Long.valueOf(i+1)).get());
+            attendance.setAClass(classRepository.findById(classId).orElse(null));
+            attendanceWrapper.add(attendanceRepository.save(attendance));
         }
         return attendanceWrapper;
     }
@@ -37,8 +40,8 @@ public class AttendanceServiceImpl implements AttendanceService {
         List<Attendance> attendances = attendanceWrapper.getAttendances();
 
         for(int i = 0; i < attendances.size(); i++){
-            attendances.get(i).setStudent(studentRepository.findAll().get(i));
-            attendances.get(i).setAClass(classRepository.findById(classId).orElse(null));
+//            attendances.get(i).setStudent(studentRepository.findAll().get(i));
+//            attendances.get(i).setAClass(classRepository.findById(classId).orElse(null));
             save(attendances.get(i));
         }
 

@@ -50,9 +50,9 @@ public class AttendanceController {
 
         model.addAttribute("aClass", classService.findById(id));
 
-        model.addAttribute("students", studentService.findAll());
+//        model.addAttribute("students", studentService.findAll());
 
-        model.addAttribute("attendanceList", attendanceService.createAttendances(new AttendanceWrapper()));
+        model.addAttribute("attendanceList", attendanceService.createAttendances(new AttendanceWrapper(), id));
 
         return "Attendance/checkAttendances";
     }

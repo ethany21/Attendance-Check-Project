@@ -20,7 +20,8 @@
                 <li>
                     <th:block th:each="attendance, i : ${attendanceList.attendances}" >
                         <div>
-                        <td th:text = "${students.get(__${i.index}__).getName()}"></td>
+<!--                        <td th:text = "${students.get(__${i.index}__).getName()}"></td>-->
+                        <td th:text = "${attendance.getStudent().name}"></td>
                         <td>
                             <select class="form-control" name = "check" th:field="*{attendances[__${i.index}__].check}">
                                 <option th:each="checkValue : ${T(com.github.project.attendancecheck.model.AttendanceCheck).values()}"

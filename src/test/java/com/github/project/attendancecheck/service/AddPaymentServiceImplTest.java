@@ -49,7 +49,7 @@ class AddPaymentServiceImplTest {
     @Test
     public void createAttendancesTest(){
 
-        List<Attendance> attendances = attendanceService.createAttendances(new AttendanceWrapper()).getAttendances();
+        List<Attendance> attendances = attendanceService.createAttendances(new AttendanceWrapper(), 3l).getAttendances();
 
         assertEquals(studentRepository.findAll().size(), attendances.size());
 

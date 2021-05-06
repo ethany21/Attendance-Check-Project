@@ -18,7 +18,7 @@ public interface AttendanceService extends CrudService<Attendance, Long>{
 
     int restPayment(Long id);
 
-    AttendanceWrapper createAttendances(AttendanceWrapper attendanceWrapper);
+    AttendanceWrapper createAttendances(AttendanceWrapper attendanceWrapper, long classId);
 
     void setAttendancesDate(AttendanceWrapper attendanceWrapper, long classId);
 
